@@ -1,0 +1,153 @@
+{
+  "check": "all_positions_window",
+  "note": "Spec sensitivity check: control group = every non-reserved position from 4 down.",
+  "n_rows": 3484552,
+  "n_searches": 140433,
+  "trimmed_share": 0.006086004743220963,
+  "overlap": {
+    "trimmed_share": 0.006086004743220963,
+    "rule": "share of rows outside [0.01, 0.99] <= 0.3",
+    "passed": true
+  },
+  "estimates": {
+    "naive_untrimmed": {
+      "name": "naive_untrimmed",
+      "estimate": 0.12954304827930543,
+      "se": 0.0005231649848372774,
+      "n_rows": 3484552,
+      "n_groups": 140433,
+      "extra": {
+        "mean_treated": 0.15830734776175762,
+        "mean_control": 0.028764299482452176
+      },
+      "ci_low": 0.12851766375105192,
+      "ci_high": 0.13056843280755895
+    },
+    "naive": {
+      "name": "naive",
+      "estimate": 0.12938007079939345,
+      "se": 0.0005235059448374855,
+      "n_rows": 3463345,
+      "n_groups": 140433,
+      "extra": {
+        "mean_treated": 0.15831906104580037,
+        "mean_control": 0.02893899024640691
+      },
+      "ci_low": 0.12835401800181936,
+      "ci_high": 0.13040612359696754
+    },
+    "regression": {
+      "name": "regression",
+      "estimate": 0.1022775837128392,
+      "se": 0.0005485760138990173,
+      "n_rows": 3463345,
+      "n_groups": 140433,
+      "extra": {},
+      "ci_low": 0.10120239448281458,
+      "ci_high": 0.10335277294286381
+    },
+    "ipw": {
+      "name": "ipw",
+      "estimate": 0.07911614778534153,
+      "se": 0.0007186006810542021,
+      "n_rows": 3463345,
+      "n_groups": 140433,
+      "extra": {
+        "max_weight": 99.85284203952938
+      },
+      "ci_low": 0.07770771633120933,
+      "ci_high": 0.08052457923947372
+    },
+    "aipw": {
+      "name": "aipw",
+      "estimate": 0.07325291498095175,
+      "se": 0.0006337428992060822,
+      "n_rows": 3463345,
+      "n_groups": 140433,
+      "extra": {
+        "mean_control": 0.03313135592626522
+      },
+      "ci_low": 0.07201080172304983,
+      "ci_high": 0.07449502823885368
+    },
+    "dml": {
+      "name": "dml",
+      "estimate": 0.0805075292777989,
+      "se": 0.0005790831800492851,
+      "n_rows": 3463345,
+      "n_groups": 140433,
+      "extra": {
+        "econml_estimate": 0.08050752927779845
+      },
+      "ci_low": 0.07937254710084939,
+      "ci_high": 0.08164251145474842
+    }
+  },
+  "benchmark": {
+    "estimate": 0.0759426150598326,
+    "se": 0.0007488871477286049,
+    "ci_low": 0.07452163209967584,
+    "ci_high": 0.07739250534826314,
+    "reps": 1000,
+    "n_searches": 61405,
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "trimmed_share": 0.006484698812759704,
+    "window": "all_positions"
+  },
+  "gap": {
+    "naive_untrimmed": {
+      "gap": 0.05360043321947283,
+      "se": 0.0009135280846218544,
+      "ci_low": 0.051809918173613995,
+      "ci_high": 0.05539094826533167,
+      "tolerance": 0.01518852301196652,
+      "verdict": "mismatch"
+    },
+    "naive": {
+      "gap": 0.05343745573956085,
+      "se": 0.0009137233904816456,
+      "ci_low": 0.05164655789421683,
+      "ci_high": 0.055228353584904875,
+      "tolerance": 0.01518852301196652,
+      "verdict": "mismatch"
+    },
+    "regression": {
+      "gap": 0.026334968653006594,
+      "se": 0.0009283143880488012,
+      "ci_low": 0.024515472452430943,
+      "ci_high": 0.028154464853582244,
+      "tolerance": 0.01518852301196652,
+      "verdict": "mismatch"
+    },
+    "ipw": {
+      "gap": 0.0031735327255089235,
+      "se": 0.0010378915641070835,
+      "ci_low": 0.0011392652598590397,
+      "ci_high": 0.005207800191158808,
+      "tolerance": 0.01518852301196652,
+      "verdict": "match"
+    },
+    "aipw": {
+      "gap": -0.0026897000788808495,
+      "se": 0.0009810514881122274,
+      "ci_low": -0.004612560995580816,
+      "ci_high": -0.0007668391621808838,
+      "tolerance": 0.01518852301196652,
+      "verdict": "match"
+    },
+    "dml": {
+      "gap": 0.004564914217966301,
+      "se": 0.00094666218338385,
+      "ci_low": 0.002709456338533955,
+      "ci_high": 0.006420372097398647,
+      "tolerance": 0.01518852301196652,
+      "verdict": "match"
+    }
+  },
+  "primary_estimator": "aipw",
+  "synthetic": false,
+  "code_version": "5b82799dae8b"
+}

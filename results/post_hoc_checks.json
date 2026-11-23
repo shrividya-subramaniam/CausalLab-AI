@@ -1,0 +1,76 @@
+{
+  "post_hoc": true,
+  "note": "Computed by scripts/post_hoc_checks.py from saved models and data; not part of the pipeline.",
+  "outcome_models_on_ranker_hotels": {
+    "estimate": 0.06836363506530253,
+    "carried_over_to_random_hotels": 0.06486433512375263,
+    "hotel_mix_share_of_gap": {
+      "difference": 0.003499299941549905,
+      "primary_gap": 0.013611105413890275,
+      "share": 0.2570915318882795
+    }
+  },
+  "grouped_sensitivity": {
+    "ols_estimate": 0.08043825579824966,
+    "ols_se_classical": 0.0005645278643379814,
+    "dof": 1218257,
+    "kd": 1.0,
+    "ky": 1.0,
+    "check_single_covariate_n_results": {
+      "r2dz_x": 0.006953321758314719,
+      "r2yz_dx": 0.004573844860100255,
+      "bias": 0.0035261995630024713,
+      "adjusted_estimate": 0.07691205623524719
+    },
+    "groups": {
+      "location_score_2": {
+        "columns": [
+          "prop_location_score2",
+          "loc2_missing",
+          "loc2_rel"
+        ],
+        "partial_r2_treatment": 0.030797808139095318,
+        "partial_r2_outcome": 0.006357030907634198,
+        "r2dz_x": 0.03177645324961798,
+        "r2yz_dx": 0.0068176379005332535,
+        "bias": 0.009320446049624878,
+        "adjusted_estimate": 0.07111780974862478
+      },
+      "hotel_price_page_query": {
+        "columns": [
+          "prop_starrating",
+          "prop_review_score",
+          "prop_brand_bool",
+          "prop_location_score1",
+          "prop_location_score2",
+          "prop_log_historical_price",
+          "star_zero",
+          "review_zero",
+          "review_missing",
+          "hist_price_zero",
+          "loc2_missing",
+          "log_price",
+          "price_rank_pct",
+          "price_rel_median",
+          "promotion_flag",
+          "star_rel",
+          "review_rel",
+          "loc1_rel",
+          "loc2_rel",
+          "srch_query_affinity_score",
+          "affinity_missing",
+          "log_distance",
+          "distance_missing"
+        ],
+        "partial_r2_treatment": 0.07011551735829671,
+        "partial_r2_outcome": 0.01898583956735125,
+        "r2dz_x": 0.0754023953159278,
+        "r2yz_dx": 0.022509858550527773,
+        "bias": 0.026696689653323846,
+        "adjusted_estimate": 0.05374156614492581
+      }
+    }
+  },
+  "script_sha256": "f82bfe070481",
+  "code_version": "5b82799dae8b"
+}

@@ -1,0 +1,29 @@
+{"ts": 1795355254.721509, "run_id": "run-76e19564", "node": "intake", "event": "enter", "detail": null}
+{"ts": 1795355259.0182369, "run_id": "run-76e19564", "node": "intake", "event": "spec", "detail": {"treatment": "promotion_flag", "outcome": "click_bool", "unit": "one hotel displayed in one search results page", "population": "hotel-in-search rows from randomly ranked searches (experimental arm), where position is assigned at random", "target_arm": "experimental"}}
+{"ts": 1795355259.018675, "run_id": "run-76e19564", "node": "intake", "event": "exit", "detail": {"seconds": 4.3, "keys": ["notes", "spec"]}}
+{"ts": 1795355259.0209134, "run_id": "run-76e19564", "node": "profile_data", "event": "enter", "detail": null}
+{"ts": 1795355259.9069986, "run_id": "run-76e19564", "node": "profile_data", "event": "exit", "detail": {"seconds": 0.86, "keys": ["profile"]}}
+{"ts": 1795355259.908102, "run_id": "run-76e19564", "node": "propose_dag", "event": "enter", "detail": null}
+{"ts": 1795355293.9369404, "run_id": "run-76e19564", "node": "propose_dag", "event": "exit", "detail": {"seconds": 34.03, "keys": ["dag"]}}
+{"ts": 1795355293.9410453, "run_id": "run-76e19564", "node": "human_review", "event": "enter", "detail": null}
+{"ts": 1795355358.7168596, "run_id": "run-76e19564", "node": "human_review", "event": "enter", "detail": null}
+{"ts": 1795355358.7533684, "run_id": "run-76e19564", "node": "human_review", "event": "decision", "detail": {"decision": "approve", "adjustment_set": null, "notes": ""}}
+{"ts": 1795355358.7536266, "run_id": "run-76e19564", "node": "human_review", "event": "exit", "detail": {"seconds": 0.0, "keys": ["approved_confounders", "review"]}}
+{"ts": 1795355358.7540095, "run_id": "run-76e19564", "node": "after_review", "event": "route", "detail": "identify"}
+{"ts": 1795355358.755397, "run_id": "run-76e19564", "node": "identify", "event": "enter", "detail": null}
+{"ts": 1795355359.4011588, "run_id": "run-76e19564", "node": "identify", "event": "result", "detail": {"valid": true, "problems": [], "d_separated": true, "descendants_in_set": [], "merged_into_treatment": [], "n_nodes": 49, "n_edges": 85}}
+{"ts": 1795355359.4019258, "run_id": "run-76e19564", "node": "identify", "event": "exit", "detail": {"seconds": 0.65, "keys": ["identification"]}}
+{"ts": 1795355359.40725, "run_id": "run-76e19564", "node": "after_identify", "event": "route", "detail": "route_design"}
+{"ts": 1795355359.4102905, "run_id": "run-76e19564", "node": "route_design", "event": "enter", "detail": null}
+{"ts": 1795355360.0850189, "run_id": "run-76e19564", "node": "route_design", "event": "exit", "detail": {"seconds": 0.67, "keys": ["design"]}}
+{"ts": 1795355360.085612, "run_id": "run-76e19564", "node": "after_design", "event": "route", "detail": "estimate"}
+{"ts": 1795355360.086604, "run_id": "run-76e19564", "node": "estimate", "event": "enter", "detail": null}
+{"ts": 1795355480.2919896, "run_id": "run-76e19564", "node": "estimate", "event": "exit", "detail": {"seconds": 120.21, "keys": ["estimates", "estimation_info"]}}
+{"ts": 1795355480.2943227, "run_id": "run-76e19564", "node": "refute", "event": "enter", "detail": null}
+{"ts": 1795355837.7527285, "run_id": "run-76e19564", "node": "refute", "event": "exit", "detail": {"seconds": 357.46, "keys": ["refutations"]}}
+{"ts": 1795355837.7542837, "run_id": "run-76e19564", "node": "judge", "event": "enter", "detail": null}
+{"ts": 1795355843.0476856, "run_id": "run-76e19564", "node": "judge", "event": "route", "detail": {"attempt": 0, "adjustment_set_size": 30, "trim": [0.01, 0.99], "interactions": [], "failures": [], "route": "pass", "primary_estimate": 0.013515903684178848}}
+{"ts": 1795355843.0483475, "run_id": "run-76e19564", "node": "judge", "event": "exit", "detail": {"seconds": 5.29, "keys": ["history", "verdict"]}}
+{"ts": 1795355843.0492694, "run_id": "run-76e19564", "node": "after_judge", "event": "route", "detail": "narrate"}
+{"ts": 1795355843.0514326, "run_id": "run-76e19564", "node": "narrate", "event": "enter", "detail": null}
+{"ts": 1795355849.095444, "run_id": "run-76e19564", "node": "narrate", "event": "exit", "detail": {"seconds": 6.04, "keys": ["outcome_status", "report_path"]}}

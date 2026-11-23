@@ -1,0 +1,57 @@
+# Variable descriptions shown to propose_dag. Descriptions only: no data, no roles.
+# One row of the data = one hotel shown in one search on Expedia (2012-2013).
+dataset: Expedia hotel searches. One row is one hotel displayed in one search results page.
+variables:
+  top3: 1 if the hotel was displayed in position 1, 2 or 3 on the results page; 0 if in positions 4 to 10.
+  position: Rank of the hotel on the results page, 1 = top.
+  click_bool: 1 if the user clicked the hotel in this search.
+  booking_bool: 1 if the user booked the hotel in this search. A booking requires a click first.
+  gross_bookings_usd: Value of the booking in US dollars, recorded after the booking.
+  promotion_flag: 1 if the hotel displayed a sale-price promotion badge in this search.
+  prop_starrating: Hotel star rating (1-5); missing when the hotel has no rating.
+  star_zero: 1 if the hotel has no star rating.
+  prop_review_score: Mean customer review score (1-5); missing when there are no reviews.
+  review_zero: 1 if the hotel has no reviews yet.
+  review_missing: 1 if the review score was not recorded.
+  prop_brand_bool: 1 if the hotel belongs to a major chain.
+  prop_location_score1: First score of the desirability of the hotel's location.
+  prop_location_score2: Second score of the desirability of the hotel's location.
+  loc2_missing: 1 if location score 2 is missing.
+  prop_log_historical_price: Log of the hotel's mean price over the previous trading period; missing if not sold then.
+  hist_price_zero: 1 if the hotel was not sold in the previous trading period.
+  log_price: Log of the displayed price (winsorised).
+  price_rank_pct: Price rank of the hotel among all hotels on the same page, 0 = cheapest, 1 = most expensive.
+  price_rel_median: Displayed price divided by the median price on the same page.
+  star_rel: Star rating minus the page average.
+  review_rel: Review score minus the page average.
+  loc1_rel: Location score 1 minus the page average.
+  loc2_rel: Location score 2 minus the page average.
+  srch_query_affinity_score: Log probability the hotel is clicked in internet searches, per Expedia; mostly missing.
+  affinity_missing: 1 if the affinity score is missing.
+  log_distance: Log of the distance between the visitor and the hotel; missing if unknown.
+  distance_missing: 1 if the distance is unknown.
+  srch_length_of_stay: Number of nights searched for.
+  srch_booking_window: Days between the search date and the check-in date.
+  srch_adults_count: Number of adults in the search.
+  srch_children_count: Number of children in the search.
+  srch_room_count: Number of rooms in the search.
+  srch_saturday_night_bool: 1 if the stay includes a Saturday night and lasts at most four nights.
+  n_results: Number of hotels displayed in the search.
+  visitor_same_country: 1 if the visitor is in the same country as the hotel.
+  site_5: 1 if the search came from Expedia point of sale 5 (the largest).
+  site_14: 1 if the search came from Expedia point of sale 14.
+  site_15: 1 if the search came from Expedia point of sale 15.
+  site_24: 1 if the search came from Expedia point of sale 24.
+  site_32: 1 if the search came from Expedia point of sale 32.
+  search_month: Month of the search.
+  search_dow: Day of the week of the search.
+  search_hour: Hour of the search.
+  visitor_hist_starrating: Mean star rating of hotels the visitor booked before; mostly missing.
+  visitor_hist_adr_usd: Mean nightly price of hotels the visitor booked before; mostly missing.
+  visitor_hist_missing: 1 if the visitor has no booking history.
+  comp_expedia_cheaper_n: Number of competitor sites on which Expedia's price for this hotel is lower.
+  comp_expedia_dearer_n: Number of competitor sites on which Expedia's price for this hotel is higher.
+context: >
+  In algorithm-ranked searches (the observational arm) Expedia's ranking algorithm decides
+  positions using hotel and search information, some of which is not in the file. In randomly
+  ranked searches (the experimental arm) positions are assigned at random.

@@ -1,0 +1,97 @@
+{
+  "benchmark": {
+    "estimate": 0.05248324941550409,
+    "se": 0.0008446253741550892,
+    "ci_low": 0.05090096353689791,
+    "ci_high": 0.054154384493776214,
+    "reps": 1000,
+    "n_searches": 61386
+  },
+  "benchmark_reweighted_to_observational": {
+    "estimate": 0.05251317407900753,
+    "se": 0.0009092147553793088,
+    "ci_low": 0.05082725047532039,
+    "ci_high": 0.054346520532403214,
+    "reps": 1000,
+    "n_searches": 61386
+  },
+  "randomisation_balance_smd": {
+    "prop_starrating": 0.022398029966210927,
+    "prop_review_score": 0.002522369954461452,
+    "prop_brand_bool": -0.009174146978870491,
+    "prop_location_score1": -0.03293621071636796,
+    "prop_location_score2": 0.12262423040328087,
+    "prop_log_historical_price": 0.013770304093360062,
+    "log_price": 0.0033145231845424002,
+    "price_rank_pct": -0.008208827624437871,
+    "promotion_flag": 0.0298117909331215,
+    "srch_query_affinity_score": 0.07594817677785946,
+    "log_distance": 0.0007076951456742561
+  },
+  "randomisation_max_abs_smd": 0.12262423040328087,
+  "cross_arm_search_covariates": {
+    "srch_length_of_stay": {
+      "experimental": 2.9436842276740625,
+      "observational": 2.1528940921779753
+    },
+    "srch_booking_window": {
+      "experimental": 49.73798585996807,
+      "observational": 32.94773685409901
+    },
+    "srch_adults_count": {
+      "experimental": 2.0538070569836773,
+      "observational": 1.9499444539394974
+    },
+    "srch_children_count": {
+      "experimental": 0.3906428175805558,
+      "observational": 0.3710405628667464
+    },
+    "srch_room_count": {
+      "experimental": 1.1221939855993224,
+      "observational": 1.1295148977382783
+    },
+    "srch_saturday_night_bool": {
+      "experimental": 0.4841983514156322,
+      "observational": 0.5146698570045006
+    },
+    "n_results": {
+      "experimental": 24.176131365457923,
+      "observational": 25.09042613798211
+    },
+    "visitor_same_country": {
+      "experimental": 0.5993223210504024,
+      "observational": 0.6457728023699653
+    },
+    "site_5": {
+      "experimental": 0.5773466262665754,
+      "observational": 0.6218737537742836
+    },
+    "site_14": {
+      "experimental": 0.09704167073925651,
+      "observational": 0.09661453882527203
+    },
+    "site_15": {
+      "experimental": 0.06366272439970026,
+      "observational": 0.06322993220532103
+    },
+    "site_24": {
+      "experimental": 0.04849639983058026,
+      "observational": 0.05244829943599385
+    },
+    "site_32": {
+      "experimental": 0.03955299253901541,
+      "observational": 0.03405400786190395
+    },
+    "search_month": {
+      "experimental": 5.087430358713713,
+      "observational": 5.191292086822766
+    },
+    "search_dow": {
+      "experimental": 2.87071970807676,
+      "observational": 2.9164031789437703
+    }
+  },
+  "n_rows": 534125,
+  "synthetic": false,
+  "code_version": "5b82799dae8b"
+}

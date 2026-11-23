@@ -1,0 +1,249 @@
+{
+  "estimates": {
+    "naive_untrimmed": {
+      "name": "naive_untrimmed",
+      "estimate": 0.09765395067985037,
+      "se": 0.0006173709248061776,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "mean_treated": 0.1583017451857763,
+        "mean_control": 0.06064779450592593
+      },
+      "ci_low": 0.09644392590212808,
+      "ci_high": 0.09886397545757267
+    },
+    "naive": {
+      "name": "naive",
+      "estimate": 0.09765395067985037,
+      "se": 0.0006173709248061776,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "mean_treated": 0.1583017451857763,
+        "mean_control": 0.06064779450592593
+      },
+      "ci_low": 0.09644392590212808,
+      "ci_high": 0.09886397545757267
+    },
+    "regression": {
+      "name": "regression",
+      "estimate": 0.08043825579870187,
+      "se": 0.000619929545545458,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {},
+      "ci_low": 0.07922321621648049,
+      "ci_high": 0.08165329538092325
+    },
+    "ipw": {
+      "name": "ipw",
+      "estimate": 0.06959643501180951,
+      "se": 0.0006447001859383229,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "max_weight": 29.587821078709265
+      },
+      "ci_low": 0.06833284586654412,
+      "ci_high": 0.0708600241570749
+    },
+    "aipw": {
+      "name": "aipw",
+      "estimate": 0.06609435482939437,
+      "se": 0.0006167174551222064,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "mean_control": 0.0669804839679289
+      },
+      "ci_low": 0.06488561082871765,
+      "ci_high": 0.06730309883007109
+    },
+    "dml": {
+      "name": "dml",
+      "estimate": 0.06528554338174127,
+      "se": 0.0006380281952547711,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "econml_estimate": 0.06528554338174139
+      },
+      "ci_low": 0.06403503109792083,
+      "ci_high": 0.0665360556655617
+    }
+  },
+  "info": {
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "trimmed_share": 0.0,
+    "n_before_trim": 1218303,
+    "covariates": [
+      "promotion_flag",
+      "prop_starrating",
+      "star_zero",
+      "prop_review_score",
+      "review_zero",
+      "review_missing",
+      "prop_brand_bool",
+      "prop_location_score1",
+      "prop_location_score2",
+      "loc2_missing",
+      "prop_log_historical_price",
+      "hist_price_zero",
+      "log_price",
+      "price_rank_pct",
+      "price_rel_median",
+      "star_rel",
+      "review_rel",
+      "loc1_rel",
+      "loc2_rel",
+      "srch_query_affinity_score",
+      "affinity_missing",
+      "log_distance",
+      "distance_missing",
+      "srch_length_of_stay",
+      "srch_booking_window",
+      "srch_adults_count",
+      "srch_children_count",
+      "srch_room_count",
+      "srch_saturday_night_bool",
+      "n_results",
+      "visitor_same_country",
+      "site_5",
+      "site_14",
+      "site_15",
+      "site_24",
+      "site_32",
+      "search_month",
+      "search_dow",
+      "search_hour",
+      "visitor_hist_starrating",
+      "visitor_hist_adr_usd",
+      "visitor_hist_missing",
+      "comp_expedia_cheaper_n",
+      "comp_expedia_dearer_n"
+    ],
+    "propensity_model": "results/models/run-ff2df23c_a0_propensity.pkl",
+    "synthetic": false
+  },
+  "benchmark": {
+    "estimate": 0.05248324941550409,
+    "se": 0.0008446253741550892,
+    "ci_low": 0.05090096353689791,
+    "ci_high": 0.054154384493776214,
+    "reps": 1000,
+    "n_searches": 61386,
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "trimmed_share": 0.0,
+    "window": "q1"
+  },
+  "gap": {
+    "primary": {
+      "gap": 0.013611105413890275,
+      "se": 0.0010458166388612467,
+      "ci_low": 0.011561304801722232,
+      "ci_high": 0.015660906026058317,
+      "tolerance": 0.010496649883100818,
+      "verdict": "mismatch"
+    },
+    "by_estimator": {
+      "naive_untrimmed": {
+        "gap": 0.04517070126434628,
+        "se": 0.0010462021226620884,
+        "ci_low": 0.04312014510392859,
+        "ci_high": 0.04722125742476398,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "naive": {
+        "gap": 0.04517070126434628,
+        "se": 0.0010462021226620884,
+        "ci_low": 0.04312014510392859,
+        "ci_high": 0.04722125742476398,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "regression": {
+        "gap": 0.027955006383197777,
+        "se": 0.0010477140182830534,
+        "ci_low": 0.02590148690736299,
+        "ci_high": 0.03000852585903256,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "ipw": {
+        "gap": 0.017113185596305418,
+        "se": 0.0010625583995317776,
+        "ci_low": 0.015030571133223133,
+        "ci_high": 0.019195800059387702,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "aipw": {
+        "gap": 0.013611105413890275,
+        "se": 0.0010458166388612467,
+        "ci_low": 0.011561304801722232,
+        "ci_high": 0.015660906026058317,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "dml": {
+        "gap": 0.012802293966237173,
+        "se": 0.0010585235002618905,
+        "ci_low": 0.010727587905723868,
+        "ci_high": 0.014877000026750478,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      }
+    }
+  },
+  "population_checks": {
+    "post_hoc": true,
+    "note": "Added 20 Nov 2026 after the synthetic check; not part of the pre-registered comparison.",
+    "plain_benchmark": {
+      "estimate": 0.05248324941550409,
+      "se": 0.0008446253741550892,
+      "ci_low": 0.05090096353689791,
+      "ci_high": 0.054154384493776214,
+      "reps": 1000,
+      "n_searches": 61386
+    },
+    "hotel_reweighted_benchmark": {
+      "estimate": 0.058929642720057046,
+      "se": 0.0011786962250329802,
+      "ci_low": 0.05676358131523636,
+      "ci_high": 0.061199352536260986,
+      "reps": 1000,
+      "n_searches": 61386,
+      "max_weight": 20.1867387013106,
+      "effective_sample_share": 0.5784490873238061
+    },
+    "gap_vs_hotel_reweighted": {
+      "gap": 0.007164712109337321,
+      "se": 0.0013302876419629735,
+      "ci_low": 0.004557348331089893,
+      "ci_high": 0.009772075887584749,
+      "tolerance": 0.01178592854401141,
+      "verdict": "match"
+    },
+    "transported_estimate": {
+      "estimate": 0.06486433512375263,
+      "se": 0.0001042802592633968,
+      "ci_low": 0.06466770071427728,
+      "ci_high": 0.06507352769596986
+    },
+    "gap_transported_vs_plain": {
+      "gap": 0.012381085708248536,
+      "ci_low": 0.010725586260806753,
+      "ci_high": 0.013929647302949802,
+      "tolerance": 0.010496649883100818,
+      "verdict": "mismatch"
+    }
+  }
+}

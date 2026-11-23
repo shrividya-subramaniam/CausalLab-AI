@@ -1,0 +1,42 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	intake(intake)
+	profile_data(profile_data)
+	propose_dag(propose_dag)
+	human_review(human_review)
+	identify(identify)
+	route_design(route_design)
+	estimate(estimate)
+	refute(refute)
+	judge(judge)
+	heterogeneity(heterogeneity)
+	narrate(narrate)
+	refuse(refuse)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> intake;
+	estimate --> refute;
+	heterogeneity --> narrate;
+	human_review -.-> identify;
+	human_review -.-> refuse;
+	identify -.-> refuse;
+	identify -.-> route_design;
+	intake --> profile_data;
+	judge -.-> heterogeneity;
+	judge -.-> narrate;
+	judge -.-> propose_dag;
+	judge -.-> refuse;
+	profile_data --> propose_dag;
+	propose_dag --> human_review;
+	refute --> judge;
+	route_design -.-> estimate;
+	route_design -.-> refuse;
+	narrate --> __end__;
+	refuse --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

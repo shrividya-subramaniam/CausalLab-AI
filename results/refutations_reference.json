@@ -1,0 +1,479 @@
+{
+  "overlap": {
+    "check": "overlap",
+    "trimmed_share": 0.0,
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "propensity_quantiles": {
+      "0.01": 0.11457810695221113,
+      "0.05": 0.1422455232464433,
+      "0.5": 0.31485292242845153,
+      "0.95": 0.671543354558319,
+      "0.99": 0.8342368327120256
+    },
+    "rule": "share of rows outside [0.01, 0.99] <= 0.3",
+    "passed": true
+  },
+  "balance": {
+    "check": "balance",
+    "max_abs_smd_after": 0.023757702398920486,
+    "worst_covariate": "srch_query_affinity_score",
+    "smd_before": {
+      "prop_starrating": 0.1508741331331392,
+      "prop_review_score": 0.089509729088111,
+      "prop_brand_bool": -0.02176042194120536,
+      "prop_location_score1": -0.01030677508682601,
+      "prop_location_score2": 0.23447729111110974,
+      "prop_log_historical_price": 0.10665995805026424,
+      "star_zero": -0.09979690716505502,
+      "review_zero": -0.07253544551713112,
+      "review_missing": -0.010422399539502029,
+      "hist_price_zero": -0.0014072147437662456,
+      "loc2_missing": -0.2412614000597497,
+      "log_price": 0.01164107878051851,
+      "price_rank_pct": 0.015381263159607897,
+      "price_rel_median": 0.023814395822517254,
+      "promotion_flag": 0.26090339441245525,
+      "star_rel": 0.22698746580262957,
+      "review_rel": 0.10682280689415638,
+      "loc1_rel": 0.008547376090187046,
+      "loc2_rel": 0.240481019181589,
+      "srch_query_affinity_score": 0.08195894327854185,
+      "affinity_missing": -0.0029863742775049287,
+      "log_distance": 0.0011306654729136484,
+      "distance_missing": 0.0002726949613156161,
+      "srch_length_of_stay": -0.0018927654361196352,
+      "srch_booking_window": 0.0018014354476696872,
+      "srch_adults_count": -0.00023789681264553954,
+      "srch_children_count": 0.010102633710739821,
+      "srch_room_count": 0.013071726283944663,
+      "srch_saturday_night_bool": 0.0014857994251584535,
+      "n_results": -0.0843034978218994,
+      "visitor_same_country": -0.00041956502649817404,
+      "site_5": -0.0029356167456853705,
+      "site_14": 0.000404513071561672,
+      "site_15": 0.0015240209551873117,
+      "site_24": -0.002259481464503195,
+      "site_32": 0.00025811641222797985,
+      "search_month": 0.0008994058896621422,
+      "search_dow": 0.00040135073235449137,
+      "search_hour": -7.773021944200652e-05,
+      "visitor_hist_starrating": -0.0004512034678744136,
+      "visitor_hist_adr_usd": 0.0010531554788085443,
+      "visitor_hist_missing": -0.0038290785981764533,
+      "comp_expedia_cheaper_n": 0.07609963899771638,
+      "comp_expedia_dearer_n": -0.016631611475077867
+    },
+    "smd_after": {
+      "prop_starrating": -0.003920682048742771,
+      "prop_review_score": 0.006434751988076155,
+      "prop_brand_bool": -0.003302799191038356,
+      "prop_location_score1": -0.004519327488148766,
+      "prop_location_score2": 0.014332127959303758,
+      "prop_log_historical_price": 0.013508447138146952,
+      "star_zero": -0.015400927318470621,
+      "review_zero": 0.0026843988174773833,
+      "review_missing": 0.0039035819137937496,
+      "hist_price_zero": -0.0015982809284501868,
+      "loc2_missing": -0.0010470760688293058,
+      "log_price": 0.0005258731939087961,
+      "price_rank_pct": -0.0007970050746685686,
+      "price_rel_median": -0.0018504423262046947,
+      "promotion_flag": 0.01803514959540545,
+      "star_rel": 0.018508285348915566,
+      "review_rel": 0.013732200947374052,
+      "loc1_rel": -0.005271606472505368,
+      "loc2_rel": 0.01704363272068221,
+      "srch_query_affinity_score": 0.023757702398920486,
+      "affinity_missing": -0.00826638311259683,
+      "log_distance": -0.0028721127015138887,
+      "distance_missing": 0.006758745083331666,
+      "srch_length_of_stay": -0.006125747122782702,
+      "srch_booking_window": 0.0073402287215570865,
+      "srch_adults_count": -0.00612129211826731,
+      "srch_children_count": 0.006415009392382732,
+      "srch_room_count": -0.0005029108238787708,
+      "srch_saturday_night_bool": 0.007521601457802996,
+      "n_results": -0.005765450873229302,
+      "visitor_same_country": 0.0006320555457509674,
+      "site_5": -0.001132150933549204,
+      "site_14": -0.00924399218998901,
+      "site_15": 0.007587527292210639,
+      "site_24": -0.0053827959350653395,
+      "site_32": 0.003035530420637825,
+      "search_month": -0.002110324565563018,
+      "search_dow": -0.0011792849233648042,
+      "search_hour": -0.0033559578469885146,
+      "visitor_hist_starrating": -0.0037872520515814497,
+      "visitor_hist_adr_usd": -0.00968969853936243,
+      "visitor_hist_missing": -0.0036479964691717858,
+      "comp_expedia_cheaper_n": 0.011406988033420521,
+      "comp_expedia_dearer_n": -0.0034994077274031034
+    },
+    "failing": [],
+    "skipped_too_few_observed": [],
+    "rule": "all |SMD| after weighting < 0.1",
+    "passed": true
+  },
+  "placebo": {
+    "check": "placebo",
+    "estimate": -1.432480275398813e-05,
+    "ci": [
+      -0.0010752179930143537,
+      0.0010465683875063776
+    ],
+    "estimates": [
+      -0.0001092998979141927,
+      -0.000200733827395741,
+      -0.0008778849660832105,
+      0.0006215181514799805,
+      0.000494776526143223
+    ],
+    "single_run_se": 0.0005412819820305658,
+    "rule": "average of 5 permutation estimates within +/-1.96 single-run standard errors of zero",
+    "passed": true
+  },
+  "random_common_cause": {
+    "check": "random_common_cause",
+    "estimate": 0.06608228560856211,
+    "shift_in_se": 0.019570097671172782,
+    "rule": "estimate moves by < 0.5 standard errors",
+    "passed": true
+  },
+  "subset_stability": {
+    "check": "subset_stability",
+    "estimates": [
+      0.06552995980774448,
+      0.06540295899532055,
+      0.06620210195647365,
+      0.06708539820417028,
+      0.06595324205265005,
+      0.06543612371900859,
+      0.06646809818005868,
+      0.06629699927526526,
+      0.06646314644313919,
+      0.06513359071295913,
+      0.06659053051666183,
+      0.06618886224477008,
+      0.06663061227709086,
+      0.0664895891231435,
+      0.06593868772341961,
+      0.06578406992182592,
+      0.06608079018269161,
+      0.0674013092055149,
+      0.06617666642921591,
+      0.06505077475762412
+    ],
+    "share_inside": 0.95,
+    "rule": "at least 80% of 20 half-sample estimates inside the full-sample 95% interval",
+    "passed": true
+  },
+  "sensitivity": {
+    "check": "sensitivity",
+    "ols_estimate": 0.08043825579870227,
+    "ols_se_classical": 0.0005645278643411508,
+    "partial_r2_treatment_outcome": 0.016392212183466044,
+    "robustness_value_q1": 0.12103046856906508,
+    "strongest_benchmark_covariate": "n_results",
+    "bound_at_strongest": {
+      "r2dz_x": 0.006953321758314387,
+      "r2yz_dx": 0.004573844860100951,
+      "bias": 0.0035261995630224514,
+      "adjusted_estimate": 0.07691205623567982
+    },
+    "bounds": {
+      "prop_starrating": {
+        "r2dz_x": 0.0003584867545824832,
+        "r2yz_dx": 2.9933427008611603e-06,
+        "bias": 2.0414910325525706e-05,
+        "adjusted_estimate": 0.08041784088837675
+      },
+      "prop_review_score": {
+        "r2dz_x": 4.873084470528879e-08,
+        "r2yz_dx": 8.574119100809159e-06,
+        "bias": 4.027648640371849e-07,
+        "adjusted_estimate": 0.08043785303383823
+      },
+      "prop_brand_bool": {
+        "r2dz_x": 0.00031963427191286046,
+        "r2yz_dx": 3.4181588055731866e-05,
+        "bias": 6.513989393232377e-05,
+        "adjusted_estimate": 0.08037311590476995
+      },
+      "prop_location_score1": {
+        "r2dz_x": 0.003935716408910239,
+        "r2yz_dx": 0.0006362377264337184,
+        "bias": 0.0009879449926917467,
+        "adjusted_estimate": 0.07945031080601052
+      },
+      "prop_location_score2": {
+        "r2dz_x": 0.004788658849718682,
+        "r2yz_dx": 0.0009863801490987794,
+        "bias": 0.0013574576628682246,
+        "adjusted_estimate": 0.07908079813583405
+      },
+      "prop_log_historical_price": {
+        "r2dz_x": 0.0018446226698335209,
+        "r2yz_dx": 0.00028995635455223085,
+        "bias": 0.000456116572003718,
+        "adjusted_estimate": 0.07998213922669856
+      },
+      "star_zero": {
+        "r2dz_x": 0.002290110697449117,
+        "r2yz_dx": 0.00016121432560086936,
+        "bias": 0.000379038003096515,
+        "adjusted_estimate": 0.08005921779560575
+      },
+      "review_zero": {
+        "r2dz_x": 1.0847612226107497e-05,
+        "r2yz_dx": 2.2630687272880386e-05,
+        "bias": 9.762771931421312e-06,
+        "adjusted_estimate": 0.08042849302677085
+      },
+      "review_missing": {
+        "r2dz_x": 2.2073074394802456e-05,
+        "r2yz_dx": 7.22931601355785e-09,
+        "bias": 2.489084567100477e-07,
+        "adjusted_estimate": 0.08043800689024556
+      },
+      "hist_price_zero": {
+        "r2dz_x": 3.696721217115674e-05,
+        "r2yz_dx": 5.89015894447178e-07,
+        "bias": 2.907600436594916e-06,
+        "adjusted_estimate": 0.08043534819826567
+      },
+      "loc2_missing": {
+        "r2dz_x": 0.01257657631864824,
+        "r2yz_dx": 0.00137339877786325,
+        "bias": 0.0026060495665160134,
+        "adjusted_estimate": 0.07783220623218626
+      },
+      "log_price": {
+        "r2dz_x": 0.0002872053386495246,
+        "r2yz_dx": 0.00022214320443210317,
+        "bias": 0.0001574091543987895,
+        "adjusted_estimate": 0.08028084664430349
+      },
+      "price_rank_pct": {
+        "r2dz_x": 0.0022498261015882113,
+        "r2yz_dx": 0.005066496485283865,
+        "bias": 0.0021060674838774443,
+        "adjusted_estimate": 0.07833218831482483
+      },
+      "price_rel_median": {
+        "r2dz_x": 1.940611065932511e-05,
+        "r2yz_dx": 0.00016496841016297334,
+        "bias": 3.525564796700999e-05,
+        "adjusted_estimate": 0.08040300015073526
+      },
+      "promotion_flag": {
+        "r2dz_x": 0.017154632093480848,
+        "r2yz_dx": 4.3164738957418736e-05,
+        "bias": 0.0005408383843340325,
+        "adjusted_estimate": 0.07989741741436823
+      },
+      "star_rel": {
+        "r2dz_x": 0.006242518667813063,
+        "r2yz_dx": 0.0009884042851234548,
+        "bias": 0.0015526081794855608,
+        "adjusted_estimate": 0.07888564761921671
+      },
+      "review_rel": {
+        "r2dz_x": 0.00022075323745447703,
+        "r2yz_dx": 0.0004456812360682106,
+        "bias": 0.00019546477218201298,
+        "adjusted_estimate": 0.08024279102652025
+      },
+      "loc1_rel": {
+        "r2dz_x": 0.0002682913930336256,
+        "r2yz_dx": 0.00019359969502366042,
+        "bias": 0.00014202631267111988,
+        "adjusted_estimate": 0.08029622948603116
+      },
+      "loc2_rel": {
+        "r2dz_x": 0.00290834232817553,
+        "r2yz_dx": 0.0012051788229433921,
+        "bias": 0.001168250047396819,
+        "adjusted_estimate": 0.07927000575130545
+      },
+      "srch_query_affinity_score": {
+        "r2dz_x": 1.621218514889725e-05,
+        "r2yz_dx": 4.647715693479979e-05,
+        "bias": 1.7104048351069182e-05,
+        "adjusted_estimate": 0.08042115175035121
+      },
+      "affinity_missing": {
+        "r2dz_x": 4.548424526234868e-05,
+        "r2yz_dx": 2.4020762924786785e-05,
+        "bias": 2.0596271712468986e-05,
+        "adjusted_estimate": 0.0804176595269898
+      },
+      "log_distance": {
+        "r2dz_x": 8.318628915120767e-07,
+        "r2yz_dx": 4.110732333315628e-07,
+        "bias": 3.643682246196666e-07,
+        "adjusted_estimate": 0.08043789143047765
+      },
+      "distance_missing": {
+        "r2dz_x": 1.6940875845939855e-05,
+        "r2yz_dx": 4.178760455375652e-09,
+        "bias": 1.6578689102323173e-07,
+        "adjusted_estimate": 0.08043809001181125
+      },
+      "srch_length_of_stay": {
+        "r2dz_x": 0.00011201268208422615,
+        "r2yz_dx": 5.259259158087444e-06,
+        "bias": 1.5124291855859575e-05,
+        "adjusted_estimate": 0.08042313150684641
+      },
+      "srch_booking_window": {
+        "r2dz_x": 4.511724041547258e-05,
+        "r2yz_dx": 7.202537180811893e-06,
+        "bias": 1.1232557659224546e-05,
+        "adjusted_estimate": 0.08042702324104305
+      },
+      "srch_adults_count": {
+        "r2dz_x": 9.715132936871591e-05,
+        "r2yz_dx": 1.4566262564403459e-06,
+        "bias": 7.412665089090192e-06,
+        "adjusted_estimate": 0.08043084313361318
+      },
+      "srch_children_count": {
+        "r2dz_x": 2.0884428513633996e-05,
+        "r2yz_dx": 2.303262733192984e-06,
+        "bias": 4.321578577075758e-06,
+        "adjusted_estimate": 0.0804339342201252
+      },
+      "srch_room_count": {
+        "r2dz_x": 3.750223949131627e-05,
+        "r2yz_dx": 4.418821382098659e-07,
+        "bias": 2.5365580705467506e-06,
+        "adjusted_estimate": 0.08043571924063173
+      },
+      "srch_saturday_night_bool": {
+        "r2dz_x": 3.606481096845765e-06,
+        "r2yz_dx": 1.5048100545067275e-06,
+        "bias": 1.4515710434573778e-06,
+        "adjusted_estimate": 0.08043680422765881
+      },
+      "n_results": {
+        "r2dz_x": 0.006953321758314387,
+        "r2yz_dx": 0.004573844860100951,
+        "bias": 0.0035261995630224514,
+        "adjusted_estimate": 0.07691205623567982
+      },
+      "visitor_same_country": {
+        "r2dz_x": 1.4298893109335851e-07,
+        "r2yz_dx": 6.80551403820895e-05,
+        "bias": 1.9437327343731393e-06,
+        "adjusted_estimate": 0.0804363120659679
+      },
+      "site_5": {
+        "r2dz_x": 2.124818237679332e-06,
+        "r2yz_dx": 2.4985180393186836e-06,
+        "bias": 1.435679302748258e-06,
+        "adjusted_estimate": 0.08043682011939952
+      },
+      "site_14": {
+        "r2dz_x": 6.765577297268854e-05,
+        "r2yz_dx": 1.5589339376526687e-05,
+        "bias": 2.0236519435096966e-05,
+        "adjusted_estimate": 0.08041801927926717
+      },
+      "site_15": {
+        "r2dz_x": 5.429619881242449e-05,
+        "r2yz_dx": 7.466619518282703e-06,
+        "bias": 1.2546233186310904e-05,
+        "adjusted_estimate": 0.08042570956551597
+      },
+      "site_24": {
+        "r2dz_x": 4.7689105586105936e-05,
+        "r2yz_dx": 1.1587873358509405e-05,
+        "bias": 1.4647943471344518e-05,
+        "adjusted_estimate": 0.08042360785523092
+      },
+      "site_32": {
+        "r2dz_x": 1.0747643717576102e-05,
+        "r2yz_dx": 2.014029983496897e-05,
+        "bias": 9.167412449083744e-06,
+        "adjusted_estimate": 0.08042908838625319
+      },
+      "search_month": {
+        "r2dz_x": 5.660929641144755e-06,
+        "r2yz_dx": 4.935744412256871e-07,
+        "bias": 1.0415407824862996e-06,
+        "adjusted_estimate": 0.08043721425791979
+      },
+      "search_dow": {
+        "r2dz_x": 5.141713324090648e-07,
+        "r2yz_dx": 1.2351583035093485e-09,
+        "bias": 1.5702550290654036e-08,
+        "adjusted_estimate": 0.08043824009615198
+      },
+      "search_hour": {
+        "r2dz_x": 6.805465313999475e-06,
+        "r2yz_dx": 7.228798857792247e-07,
+        "bias": 1.3820326437475642e-06,
+        "adjusted_estimate": 0.08043687376605853
+      },
+      "visitor_hist_starrating": {
+        "r2dz_x": 6.996405482805251e-08,
+        "r2yz_dx": 5.284837577117455e-06,
+        "bias": 3.788856559316569e-07,
+        "adjusted_estimate": 0.08043787691304634
+      },
+      "visitor_hist_adr_usd": {
+        "r2dz_x": 5.951725691824607e-07,
+        "r2yz_dx": 2.1638485332783323e-07,
+        "bias": 2.2360929487119272e-07,
+        "adjusted_estimate": 0.0804380321894074
+      },
+      "visitor_hist_missing": {
+        "r2dz_x": 1.283130666540722e-05,
+        "r2yz_dx": 1.4433345370628092e-06,
+        "bias": 2.6814924053001456e-06,
+        "adjusted_estimate": 0.08043557430629697
+      },
+      "comp_expedia_cheaper_n": {
+        "r2dz_x": 0.0003450096654277559,
+        "r2yz_dx": 8.179686861922069e-05,
+        "bias": 0.00010469205908896403,
+        "adjusted_estimate": 0.08033356373961331
+      },
+      "comp_expedia_dearer_n": {
+        "r2dz_x": 2.1889977696250065e-06,
+        "r2yz_dx": 5.715196350244788e-05,
+        "bias": 6.969370509857462e-06,
+        "adjusted_estimate": 0.08043128642819242
+      }
+    },
+    "ols_se_cluster": 0.0006199295455454561,
+    "adjusted_ci_cluster": [
+      0.0756955613238862,
+      0.07812855114747343
+    ],
+    "e_value": 3.3869439129927725,
+    "e_value_ci": 3.349720346673087,
+    "rule": "effect keeps its sign with a hidden confounder kd=1.0, ky=1.0 times the strongest covariate",
+    "passed": true
+  },
+  "held_out_covariate": {
+    "check": "held_out_covariate",
+    "covariate": "prop_location_score2",
+    "also_left_out": [
+      "loc2_missing",
+      "loc2_rel"
+    ],
+    "estimate": 0.04347110528351478,
+    "estimate_in_sd": 0.25465743934302176,
+    "ci": [
+      0.04283658093510249,
+      0.04410562963192707
+    ],
+    "rule": "reported, not pass or fail",
+    "passed": null
+  },
+  "code_version": "5b82799dae8b"
+}

@@ -1,0 +1,112 @@
+# CausalLab AI configuration. Every threshold the code applies lives here.
+# Change values here, not in code. Paths are relative to the repository root.
+
+paths:
+  # The Kaggle file. Relative to the repo root, or absolute.
+  raw_csv: ../expedia-personalized-sort/data/train.csv
+  processed_dir: data/processed
+  results_dir: results
+  spec_locked: config/spec_locked.yaml
+  dictionary: config/data_dictionary.yaml
+
+seed: 20131101
+
+data:
+  # Share of searches kept, chosen by a hash of srch_id (never by row).
+  sample_fraction: 0.505   # about 5 million rows (was 0.10, about 1 million; changed 19 Nov 2026)
+  # Positions reserved for other listing types. Found in Phase 1 EDA:
+  # positions 5, 11, 17 and 23 hold about 7% of the rows of their neighbours in both arms.
+  reserved_positions: [5, 11, 17, 23]
+  # Winsorise price_usd at these quantiles before building price features.
+  price_winsor_quantiles: [0.001, 0.999]
+
+treatment:
+  top_k: 3                 # top3 = position 1..3
+  control_max_position: 10 # control = positions 4..10, minus reserved positions
+
+models:
+  # LightGBM settings shared by every nuisance model.
+  lgbm:
+    n_estimators: 200
+    learning_rate: 0.05
+    num_leaves: 31
+    min_child_samples: 200
+    subsample: 0.8
+    subsample_freq: 1
+    colsample_bytree: 0.8
+    n_jobs: -1
+    verbose: -1
+    # Bit-for-bit identical results on every run (post-hoc, 20 Nov 2026): without these,
+    # LightGBM picks its threading strategy by timing, which changes the last decimals.
+    deterministic: true
+    force_col_wise: true
+  cv_folds: 5              # cross-fitting folds, always grouped by search
+  refuter_cv_folds: 2      # folds for re-estimates inside the refuters, to keep runtime down
+  primary_estimator: aipw
+
+overlap:
+  trim: [0.01, 0.99]
+  # Overlap fails if more than this share of rows falls outside the trimming range.
+  max_trimmed_share: 0.30
+
+bootstrap:
+  benchmark_reps: 1000
+  estimator_reps: 200      # fallback only; estimators use influence-function standard errors
+
+refuters:
+  balance_max_smd: 0.10
+  # Post-hoc (20 Nov 2026): average of 5 permutations, judged against single-run standard
+  # errors. With 1 permutation the check fired by chance on 3 of 53 runs (Q3 clicks and two
+  # clean trap runs). This over-corrects: the average of 5 is held to about 4.4 of its own
+  # standard errors (1.96 x sqrt(5)), so it is not a 5% test. Tested against its own standard
+  # error, the Q3 clicks placebo fails (z = -2.4); Q1 and Q3 bookings pass. See the README.
+  placebo_reps: 5
+  random_common_cause_max_shift_in_se: 0.5
+  subset_n: 20
+  subset_fraction: 0.5
+  # Post-hoc (20 Nov 2026): was 0.90. In two trap suites with Claude, 0.90 refused 5 of 30
+  # correct runs each time (shares 0.80-0.85), and 12 of 30 passed with no margin at all.
+  subset_min_share_inside: 0.80
+  # Sensitivity: fail if a hidden confounder as strong as the strongest observed
+  # covariate (kd = ky = 1) would push the effect to zero.
+  sensitivity_kd: 1.0
+  sensitivity_ky: 1.0
+
+gap:
+  # The estimate matches the benchmark only if the whole 95% interval of the gap
+  # lies within +/- tolerance x |benchmark|. Fixed before the run.
+  tolerance_share_of_benchmark: 0.20
+
+loop:
+  max_respecifications: 2
+  # Trimming ranges the re-specification step may tighten to, in order.
+  tighter_trims: [[0.05, 0.95], [0.10, 0.90]]
+
+q2:
+  forest_subsample_rows: 1200000   # all Q1 rows at the 50.5% sample (post-hoc, 20 Nov 2026; was 200000)
+  forest_n_estimators: 400
+  forest_min_samples_leaf: 50
+  # Trip type is built from the srch_ columns, first matching rule wins.
+  trip_types:
+    family: "srch_children_count > 0"
+    weekend_couple: "srch_adults_count == 2 and srch_saturday_night_bool == 1 and srch_length_of_stay <= 3"
+    solo: "srch_adults_count == 1"
+    other: "True"
+
+llm:
+  # Read model IDs from here; confirm current IDs at https://docs.claude.com.
+  propose_dag: claude-sonnet-5-5
+  judge: claude-haiku-5-5
+  intake: claude-haiku-5-5
+  narrate: claude-haiku-5-5
+  refuse: claude-haiku-5-5
+  temperature: null        # these models reject a temperature setting, so none is sent
+  max_tokens: 4000
+  # The graph for about 50 variables (roles, reasons and about 95 edges) needs more room.
+  max_tokens_by_role:
+    propose_dag: 16000
+  structured_output_method: json_schema   # Anthropic's native structured output
+
+trap_suite:
+  runs_per_scenario: 10
+  rows: 20000

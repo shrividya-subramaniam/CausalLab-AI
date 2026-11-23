@@ -1,0 +1,279 @@
+{
+  "source": "data/processed/train.parquet",
+  "shape": {
+    "n_rows": 9917530,
+    "n_searches": 399344,
+    "first": "2012-11-01 00:01:37",
+    "last": "2013-06-30 23:58:24"
+  },
+  "random_share": 0.3043641572178373,
+  "arms": [
+    {
+      "random_bool": 0,
+      "n_rows": 6977878,
+      "n_searches": 277798,
+      "click_rate": 0.04395548331455494,
+      "booking_rate": 0.03736780723308719
+    },
+    {
+      "random_bool": 1,
+      "n_rows": 2939652,
+      "n_searches": 121546,
+      "click_rate": 0.04658918810798013,
+      "booking_rate": 0.005390093793415003
+    }
+  ],
+  "searches": [
+    {
+      "random_bool": 0,
+      "share_zero_click": 0.0,
+      "share_with_booking": 0.9386244681387195
+    },
+    {
+      "random_bool": 1,
+      "share_zero_click": 0.0,
+      "share_with_booking": 0.13036216740986953
+    }
+  ],
+  "rows_by_position": [
+    {
+      "position": 1,
+      "observational_rows": 277662.0,
+      "experimental_rows": 120907.0
+    },
+    {
+      "position": 2,
+      "observational_rows": 277652.0,
+      "experimental_rows": 120814.0
+    },
+    {
+      "position": 3,
+      "observational_rows": 277622.0,
+      "experimental_rows": 120862.0
+    },
+    {
+      "position": 4,
+      "observational_rows": 266073.0,
+      "experimental_rows": 120354.0
+    },
+    {
+      "position": 5,
+      "observational_rows": 16672.0,
+      "experimental_rows": 1928.0
+    },
+    {
+      "position": 6,
+      "observational_rows": 277308.0,
+      "experimental_rows": 120792.0
+    },
+    {
+      "position": 7,
+      "observational_rows": 271435.0,
+      "experimental_rows": 117788.0
+    },
+    {
+      "position": 8,
+      "observational_rows": 265486.0,
+      "experimental_rows": 114876.0
+    },
+    {
+      "position": 9,
+      "observational_rows": 259865.0,
+      "experimental_rows": 112146.0
+    },
+    {
+      "position": 10,
+      "observational_rows": 237876.0,
+      "experimental_rows": 108891.0
+    },
+    {
+      "position": 11,
+      "observational_rows": 20337.0,
+      "experimental_rows": 1990.0
+    },
+    {
+      "position": 12,
+      "observational_rows": 249246.0,
+      "experimental_rows": 107088.0
+    },
+    {
+      "position": 13,
+      "observational_rows": 244658.0,
+      "experimental_rows": 104762.0
+    },
+    {
+      "position": 14,
+      "observational_rows": 239642.0,
+      "experimental_rows": 102376.0
+    },
+    {
+      "position": 15,
+      "observational_rows": 234762.0,
+      "experimental_rows": 100146.0
+    },
+    {
+      "position": 16,
+      "observational_rows": 212417.0,
+      "experimental_rows": 96956.0
+    },
+    {
+      "position": 17,
+      "observational_rows": 20557.0,
+      "experimental_rows": 1941.0
+    },
+    {
+      "position": 18,
+      "observational_rows": 225419.0,
+      "experimental_rows": 95593.0
+    },
+    {
+      "position": 19,
+      "observational_rows": 220940.0,
+      "experimental_rows": 93463.0
+    },
+    {
+      "position": 20,
+      "observational_rows": 216469.0,
+      "experimental_rows": 91379.0
+    },
+    {
+      "position": 21,
+      "observational_rows": 211938.0,
+      "experimental_rows": 89204.0
+    },
+    {
+      "position": 22,
+      "observational_rows": 190234.0,
+      "experimental_rows": 86184.0
+    },
+    {
+      "position": 23,
+      "observational_rows": 19674.0,
+      "experimental_rows": 1781.0
+    },
+    {
+      "position": 24,
+      "observational_rows": 202691.0,
+      "experimental_rows": 84954.0
+    },
+    {
+      "position": 25,
+      "observational_rows": 198022.0,
+      "experimental_rows": 82742.0
+    },
+    {
+      "position": 26,
+      "observational_rows": 193411.0,
+      "experimental_rows": 80651.0
+    },
+    {
+      "position": 27,
+      "observational_rows": 188936.0,
+      "experimental_rows": 78535.0
+    },
+    {
+      "position": 28,
+      "observational_rows": 184559.0,
+      "experimental_rows": 76412.0
+    },
+    {
+      "position": 29,
+      "observational_rows": 179912.0,
+      "experimental_rows": 74179.0
+    },
+    {
+      "position": 30,
+      "observational_rows": 174730.0,
+      "experimental_rows": 71690.0
+    },
+    {
+      "position": 31,
+      "observational_rows": 168703.0,
+      "experimental_rows": 69025.0
+    },
+    {
+      "position": 32,
+      "observational_rows": 159192.0,
+      "experimental_rows": 64381.0
+    },
+    {
+      "position": 33,
+      "observational_rows": 150677.0,
+      "experimental_rows": 60834.0
+    },
+    {
+      "position": 34,
+      "observational_rows": 142218.0,
+      "experimental_rows": 56515.0
+    },
+    {
+      "position": 35,
+      "observational_rows": 127223.0,
+      "experimental_rows": 48503.0
+    },
+    {
+      "position": 36,
+      "observational_rows": 99323.0,
+      "experimental_rows": 34954.0
+    },
+    {
+      "position": 37,
+      "observational_rows": 55520.0,
+      "experimental_rows": 18293.0
+    },
+    {
+      "position": 38,
+      "observational_rows": 16424.0,
+      "experimental_rows": 4952.0
+    },
+    {
+      "position": 39,
+      "observational_rows": 2293.0,
+      "experimental_rows": 781.0
+    },
+    {
+      "position": 40,
+      "observational_rows": 100.0,
+      "experimental_rows": 30.0
+    }
+  ],
+  "zero_coded": {
+    "star_zero": 0.03406029525496772,
+    "review_zero": 0.04713734165664233,
+    "review_null": 0.0014751656914574495,
+    "hist_price_zero": 0.14423218281164765,
+    "max_price": 19726328.0,
+    "p999_price": 2132.8624600002167
+  },
+  "cross_arm": [
+    {
+      "random_bool": 0,
+      "length_of_stay": 2.15852455431293,
+      "booking_window": 32.65177895056348,
+      "promotion_share": 0.2222194197147041
+    },
+    {
+      "random_bool": 1,
+      "length_of_stay": 2.939493858456715,
+      "booking_window": 49.42589905199663,
+      "promotion_share": 0.20043256820875396
+    }
+  ],
+  "reserved_positions_found": [
+    5,
+    11,
+    17,
+    23
+  ],
+  "findings": [
+    "Rows: 9,917,530; searches: 399,344 (spec: about 9.9 million rows).",
+    "Randomly ranked share of searches: 30.4% (spec: roughly one third).",
+    "Share of searches with zero clicks: arm 0 = 0.0%, arm 1 = 0.0% (spec: only searches with a click are in the file).",
+    "Share of searches with a booking: arm 0 = 93.9%, arm 1 = 13.0% (spec: bookings sampled differently across arms).",
+    "Reserved positions (under a quarter of the usual rows in both arms): [5, 11, 17, 23] (config: [5, 11, 17, 23]).",
+    "Zero-coded states: star 3.4%, review 4.7% (plus 0.15% null), historical price 14.4%.",
+    "Price: 99.9th percentile 2,133, maximum 19,726,328 (winsorise).",
+    "Arms differ on search covariates: arm 0: stay 2.16 nights, window 32.7 days; arm 1: stay 2.94 nights, window 49.4 days"
+  ],
+  "code_version": "5b82799dae8b"
+}

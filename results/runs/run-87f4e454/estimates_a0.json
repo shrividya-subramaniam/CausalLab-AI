@@ -1,0 +1,126 @@
+{
+  "estimates": {
+    "naive_untrimmed": {
+      "name": "naive_untrimmed",
+      "estimate": 0.001819530243155081,
+      "se": 0.00016407442300172482,
+      "n_rows": 1484238,
+      "n_groups": 61405,
+      "extra": {
+        "mean_treated": 0.006867541124610257,
+        "mean_control": 0.005048010881455176
+      },
+      "ci_low": 0.00149795028328751,
+      "ci_high": 0.002141110203022652
+    },
+    "naive": {
+      "name": "naive",
+      "estimate": 0.0018211313342411505,
+      "se": 0.00016425411630883587,
+      "n_rows": 1470386,
+      "n_groups": 61400,
+      "extra": {
+        "mean_treated": 0.006868118021417507,
+        "mean_control": 0.0050469866871763564
+      },
+      "ci_low": 0.0014991991819633791,
+      "ci_high": 0.002143063486518922
+    },
+    "regression": {
+      "name": "regression",
+      "estimate": 0.002321227818273374,
+      "se": 0.00016906867983316885,
+      "n_rows": 1470386,
+      "n_groups": 61400,
+      "extra": {},
+      "ci_low": 0.0019898592948866295,
+      "ci_high": 0.0026525963416601183
+    },
+    "ipw": {
+      "name": "ipw",
+      "estimate": 0.0025713864247087544,
+      "se": 0.00021218260605709413,
+      "n_rows": 1470386,
+      "n_groups": 61400,
+      "extra": {
+        "max_weight": 97.30573215759922
+      },
+      "ci_low": 0.0021555161586909997,
+      "ci_high": 0.002987256690726509
+    },
+    "aipw": {
+      "name": "aipw",
+      "estimate": 0.0025324841552903056,
+      "se": 0.00019728450344042454,
+      "n_rows": 1470386,
+      "n_groups": 61400,
+      "extra": {
+        "mean_control": 0.004966057650287038
+      },
+      "ci_low": 0.002145813633839205,
+      "ci_high": 0.002919154676741406
+    },
+    "dml": {
+      "name": "dml",
+      "estimate": 0.0025048846739600577,
+      "se": 0.00017814638886315997,
+      "n_rows": 1470386,
+      "n_groups": 61400,
+      "extra": {
+        "econml_estimate": 0.0025048846739600676
+      },
+      "ci_low": 0.0021557241678123967,
+      "ci_high": 0.0028540451801077186
+    }
+  },
+  "info": {
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "trimmed_share": 0.009332735046535645,
+    "n_before_trim": 1484238,
+    "covariates": [
+      "prop_starrating",
+      "star_zero",
+      "prop_review_score",
+      "review_zero",
+      "review_missing",
+      "prop_brand_bool",
+      "prop_location_score1",
+      "prop_location_score2",
+      "loc2_missing",
+      "prop_log_historical_price",
+      "hist_price_zero",
+      "srch_query_affinity_score",
+      "affinity_missing",
+      "log_distance",
+      "distance_missing",
+      "visitor_same_country",
+      "srch_length_of_stay",
+      "srch_booking_window",
+      "srch_saturday_night_bool",
+      "site_5",
+      "site_14",
+      "site_15",
+      "site_24",
+      "site_32",
+      "search_month",
+      "search_dow",
+      "search_hour",
+      "position",
+      "srch_adults_count",
+      "srch_children_count",
+      "srch_room_count",
+      "n_results",
+      "visitor_hist_starrating",
+      "visitor_hist_adr_usd",
+      "visitor_hist_missing"
+    ],
+    "propensity_model": "results/models/run-87f4e454_a0_propensity.pkl",
+    "synthetic": false
+  },
+  "benchmark": null,
+  "gap": null,
+  "population_checks": null
+}

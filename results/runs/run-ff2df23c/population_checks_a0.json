@@ -1,0 +1,44 @@
+{
+  "post_hoc": true,
+  "note": "Added 20 Nov 2026 after the synthetic check; not part of the pre-registered comparison.",
+  "plain_benchmark": {
+    "estimate": 0.05248324941550409,
+    "se": 0.0008446253741550892,
+    "ci_low": 0.05090096353689791,
+    "ci_high": 0.054154384493776214,
+    "reps": 1000,
+    "n_searches": 61386
+  },
+  "hotel_reweighted_benchmark": {
+    "estimate": 0.058929642720057046,
+    "se": 0.0011786962250329802,
+    "ci_low": 0.05676358131523636,
+    "ci_high": 0.061199352536260986,
+    "reps": 1000,
+    "n_searches": 61386,
+    "max_weight": 20.1867387013106,
+    "effective_sample_share": 0.5784490873238061
+  },
+  "gap_vs_hotel_reweighted": {
+    "gap": 0.007164712109337321,
+    "se": 0.0013302876419629735,
+    "ci_low": 0.004557348331089893,
+    "ci_high": 0.009772075887584749,
+    "tolerance": 0.01178592854401141,
+    "verdict": "match"
+  },
+  "transported_estimate": {
+    "estimate": 0.06486433512375263,
+    "se": 0.0001042802592633968,
+    "ci_low": 0.06466770071427728,
+    "ci_high": 0.06507352769596986
+  },
+  "gap_transported_vs_plain": {
+    "gap": 0.012381085708248536,
+    "ci_low": 0.010725586260806753,
+    "ci_high": 0.013929647302949802,
+    "tolerance": 0.010496649883100818,
+    "verdict": "mismatch"
+  },
+  "code_version": "5b82799dae8b"
+}

@@ -1,0 +1,203 @@
+{
+  "n_rows": 1199983,
+  "n_searches": 138314,
+  "overall": {
+    "estimate": 0.06553719385640615
+  },
+  "groups": [
+    {
+      "modifier": "price_tercile",
+      "level": "1",
+      "n_rows": 409867,
+      "estimate": 0.07880165871506047,
+      "ci_low": 0.06807150890585147,
+      "ci_high": 0.08953180852426947,
+      "experimental": {
+        "estimate": 0.06183911930885021,
+        "se": 0.0014456499624019299,
+        "ci_low": 0.059128075026291665,
+        "ci_high": 0.06461624541770987,
+        "reps": 1000,
+        "n_searches": 59872
+      }
+    },
+    {
+      "modifier": "price_tercile",
+      "level": "2",
+      "n_rows": 383266,
+      "estimate": 0.06702434374422148,
+      "ci_low": 0.05755958553521501,
+      "ci_high": 0.07648910195322794,
+      "experimental": {
+        "estimate": 0.04979189889708132,
+        "se": 0.0015701683129040584,
+        "ci_low": 0.04650675912055042,
+        "ci_high": 0.05265748195960344,
+        "reps": 1000,
+        "n_searches": 58179
+      }
+    },
+    {
+      "modifier": "price_tercile",
+      "level": "3",
+      "n_rows": 406850,
+      "estimate": 0.05077342242436609,
+      "ci_low": 0.042590694109881456,
+      "ci_high": 0.05895615073885072,
+      "experimental": {
+        "estimate": 0.04453861206852246,
+        "se": 0.0012890583744507927,
+        "ci_low": 0.04207760352270907,
+        "ci_high": 0.047174981959662,
+        "reps": 1000,
+        "n_searches": 57445
+      }
+    },
+    {
+      "modifier": "star_band",
+      "level": "1-2",
+      "n_rows": 181938,
+      "estimate": 0.07002075433125322,
+      "ci_low": 0.05871915664411022,
+      "ci_high": 0.08132235201839623,
+      "experimental": {
+        "estimate": 0.0528689811919342,
+        "se": 0.001755118629410064,
+        "ci_low": 0.04914339473850792,
+        "ci_high": 0.056202730048131665,
+        "reps": 1000,
+        "n_searches": 34982
+      }
+    },
+    {
+      "modifier": "star_band",
+      "level": "3",
+      "n_rows": 438735,
+      "estimate": 0.06909169122836413,
+      "ci_low": 0.06144727009284504,
+      "ci_high": 0.07673611236388321,
+      "experimental": {
+        "estimate": 0.05000523562524687,
+        "se": 0.001400223159846901,
+        "ci_low": 0.04716923858860303,
+        "ci_high": 0.052538544727800396,
+        "reps": 1000,
+        "n_searches": 52247
+      }
+    },
+    {
+      "modifier": "star_band",
+      "level": "4",
+      "n_rows": 431641,
+      "estimate": 0.06433853084658399,
+      "ci_low": 0.05767261694038124,
+      "ci_high": 0.07100444475278674,
+      "experimental": {
+        "estimate": 0.056649995581153884,
+        "se": 0.0016912581299988886,
+        "ci_low": 0.05313401857917968,
+        "ci_high": 0.059889636554573834,
+        "reps": 1000,
+        "n_searches": 47149
+      }
+    },
+    {
+      "modifier": "star_band",
+      "level": "5",
+      "n_rows": 122207,
+      "estimate": 0.047809977650739126,
+      "ci_low": 0.03523980084066526,
+      "ci_high": 0.06038015446081299,
+      "experimental": {
+        "estimate": 0.042891693637213735,
+        "se": 0.002698699723939232,
+        "ci_low": 0.03768714787983053,
+        "ci_high": 0.04843346260052555,
+        "reps": 1000,
+        "n_searches": 19937
+      }
+    },
+    {
+      "modifier": "star_band",
+      "level": "unrated",
+      "n_rows": 25462,
+      "estimate": 0.07765602116415445,
+      "ci_low": 0.04866563987250704,
+      "ci_high": 0.10664640245580184,
+      "experimental": {
+        "estimate": 0.07181200325491179,
+        "se": 0.005998770258077555,
+        "ci_low": 0.05986122578440372,
+        "ci_high": 0.08392594246552636,
+        "reps": 1000,
+        "n_searches": 7297
+      }
+    },
+    {
+      "modifier": "trip_type",
+      "level": "family",
+      "n_rows": 293101,
+      "estimate": 0.06927405021385592,
+      "ci_low": 0.05950390721197289,
+      "ci_high": 0.07904419321573895,
+      "experimental": {
+        "estimate": 0.05438426217696807,
+        "se": 0.0018227197307938976,
+        "ci_low": 0.051135104279682465,
+        "ci_high": 0.058216366946349976,
+        "reps": 1000,
+        "n_searches": 15218
+      }
+    },
+    {
+      "modifier": "trip_type",
+      "level": "other",
+      "n_rows": 370698,
+      "estimate": 0.06423675354526977,
+      "ci_low": 0.055458624314489585,
+      "ci_high": 0.07301488277604995,
+      "experimental": {
+        "estimate": 0.05013410539024206,
+        "se": 0.0013911394866324759,
+        "ci_low": 0.047226453883929105,
+        "ci_high": 0.052685945004394136,
+        "reps": 1000,
+        "n_searches": 22724
+      }
+    },
+    {
+      "modifier": "trip_type",
+      "level": "solo",
+      "n_rows": 233818,
+      "estimate": 0.06113086131561912,
+      "ci_low": 0.05039549084491022,
+      "ci_high": 0.07186623178632802,
+      "experimental": {
+        "estimate": 0.054554233206540195,
+        "se": 0.002354819300651361,
+        "ci_low": 0.04990388452663024,
+        "ci_high": 0.059069167166403126,
+        "reps": 1000,
+        "n_searches": 8351
+      }
+    },
+    {
+      "modifier": "trip_type",
+      "level": "weekend_couple",
+      "n_rows": 302366,
+      "estimate": 0.06691656240066868,
+      "ci_low": 0.05777358952329817,
+      "ci_high": 0.07605953527803919,
+      "experimental": {
+        "estimate": 0.05293001233314456,
+        "se": 0.0017125018268967036,
+        "ci_low": 0.04929159718443461,
+        "ci_high": 0.05619328050487154,
+        "reps": 1000,
+        "n_searches": 15093
+      }
+    }
+  ],
+  "note": "Forest intervals are not clustered by search; experimental intervals are (cluster bootstrap).",
+  "code_version": "5b82799dae8b"
+}

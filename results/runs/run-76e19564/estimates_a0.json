@@ -1,0 +1,121 @@
+{
+  "estimates": {
+    "naive_untrimmed": {
+      "name": "naive_untrimmed",
+      "estimate": 0.016728788903489833,
+      "se": 0.0004605465537540895,
+      "n_rows": 1484238,
+      "n_groups": 61405,
+      "extra": {
+        "mean_treated": 0.06005066659498979,
+        "mean_control": 0.043321877691499956
+      },
+      "ci_low": 0.015826134244927778,
+      "ci_high": 0.017631443562051888
+    },
+    "naive": {
+      "name": "naive",
+      "estimate": 0.01666563884190351,
+      "se": 0.00046143100254381216,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {
+        "mean_treated": 0.060049394331412445,
+        "mean_control": 0.043383755489508936
+      },
+      "ci_low": 0.015761250695567428,
+      "ci_high": 0.01757002698823959
+    },
+    "regression": {
+      "name": "regression",
+      "estimate": 0.014619664119592889,
+      "se": 0.0004723522752033773,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {},
+      "ci_low": 0.013693870672178718,
+      "ci_high": 0.01554545756700706
+    },
+    "ipw": {
+      "name": "ipw",
+      "estimate": 0.01390465458663346,
+      "se": 0.0005640247611740761,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {
+        "max_weight": 99.89092335138835
+      },
+      "ci_low": 0.012799186368343464,
+      "ci_high": 0.015010122804923455
+    },
+    "aipw": {
+      "name": "aipw",
+      "estimate": 0.013515903684178848,
+      "se": 0.0005142968903297596,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {
+        "mean_control": 0.04410255171205874
+      },
+      "ci_low": 0.012507900301771574,
+      "ci_high": 0.014523907066586123
+    },
+    "dml": {
+      "name": "dml",
+      "estimate": 0.01350632689220879,
+      "se": 0.0004964677683457353,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {
+        "econml_estimate": 0.013506326892208792
+      },
+      "ci_low": 0.012533267946766175,
+      "ci_high": 0.014479385837651406
+    }
+  },
+  "info": {
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "trimmed_share": 0.009699926831141625,
+    "n_before_trim": 1484238,
+    "covariates": [
+      "prop_starrating",
+      "star_zero",
+      "prop_review_score",
+      "review_zero",
+      "review_missing",
+      "prop_brand_bool",
+      "prop_location_score1",
+      "prop_location_score2",
+      "loc2_missing",
+      "prop_log_historical_price",
+      "hist_price_zero",
+      "log_distance",
+      "distance_missing",
+      "srch_length_of_stay",
+      "srch_booking_window",
+      "srch_saturday_night_bool",
+      "visitor_same_country",
+      "site_5",
+      "site_14",
+      "site_15",
+      "site_24",
+      "site_32",
+      "search_month",
+      "search_dow",
+      "search_hour",
+      "position",
+      "srch_adults_count",
+      "srch_children_count",
+      "srch_room_count",
+      "n_results"
+    ],
+    "propensity_model": "results/models/run-76e19564_a0_propensity.pkl",
+    "synthetic": false
+  },
+  "benchmark": null,
+  "gap": null,
+  "population_checks": null
+}

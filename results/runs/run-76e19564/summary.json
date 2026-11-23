@@ -1,0 +1,1024 @@
+{
+  "run_id": "run-76e19564",
+  "question": "Does the promotion badge cause more clicks?",
+  "dataset": "expedia",
+  "offline": false,
+  "synthetic": false,
+  "auto_approve": false,
+  "run_heterogeneity": false,
+  "exploratory": false,
+  "adjustment_override": null,
+  "spec": {
+    "treatment": "promotion_flag",
+    "outcome": "click_bool",
+    "unit": "one hotel displayed in one search results page",
+    "population": "hotel-in-search rows from randomly ranked searches (experimental arm), where position is assigned at random",
+    "target_arm": "experimental"
+  },
+  "profile": {
+    "rows": 1484238,
+    "groups": 61405,
+    "arm": "experimental",
+    "treatment_share": 0.2005284866712751,
+    "outcome_rate": 0.04667647641415999,
+    "columns": 57,
+    "most_missing": {
+      "gross_bookings_usd": 0.9945871214724323,
+      "visitor_hist_starrating": 0.9727125973058229,
+      "visitor_hist_adr_usd": 0.9725913229549439,
+      "srch_query_affinity_score": 0.9620303482325611,
+      "log_distance": 0.34188519630948677,
+      "prop_location_score2": 0.2299584028976485,
+      "loc2_rel": 0.2299584028976485,
+      "prop_log_historical_price": 0.14338738126904177
+    }
+  },
+  "dag": {
+    "roles": [
+      {
+        "name": "promotion_flag",
+        "role": "treatment",
+        "reason": "Sale-price promotion badge shown on the hotel in this search."
+      },
+      {
+        "name": "click_bool",
+        "role": "outcome",
+        "reason": "Whether the user clicked the hotel."
+      },
+      {
+        "name": "position",
+        "role": "precision",
+        "reason": "Randomly assigned in the experimental arm, so it is not a confounder, but it strongly drives clicks and reduces noise."
+      },
+      {
+        "name": "top3",
+        "role": "precision",
+        "reason": "Deterministic function of position; redundant with it."
+      },
+      {
+        "name": "booking_bool",
+        "role": "post_outcome",
+        "reason": "Requires a click first, so it is measured after the outcome."
+      },
+      {
+        "name": "gross_bookings_usd",
+        "role": "post_outcome",
+        "reason": "Recorded after the booking."
+      },
+      {
+        "name": "prop_starrating",
+        "role": "confounder",
+        "reason": "Hotel quality affects both the chance of a promotion and clicks."
+      },
+      {
+        "name": "star_zero",
+        "role": "confounder",
+        "reason": "Missingness indicator for star rating."
+      },
+      {
+        "name": "prop_review_score",
+        "role": "confounder",
+        "reason": "Hotel quality affects both promotion and clicks."
+      },
+      {
+        "name": "review_zero",
+        "role": "confounder",
+        "reason": "Indicator for a hotel with no reviews, a hotel characteristic."
+      },
+      {
+        "name": "review_missing",
+        "role": "confounder",
+        "reason": "Missingness indicator for the review score."
+      },
+      {
+        "name": "prop_brand_bool",
+        "role": "confounder",
+        "reason": "Chain affiliation affects promotion practices and click appeal."
+      },
+      {
+        "name": "prop_location_score1",
+        "role": "confounder",
+        "reason": "Location desirability affects both promotion and clicks."
+      },
+      {
+        "name": "prop_location_score2",
+        "role": "confounder",
+        "reason": "Location desirability affects both promotion and clicks."
+      },
+      {
+        "name": "loc2_missing",
+        "role": "confounder",
+        "reason": "Missingness indicator for location score 2."
+      },
+      {
+        "name": "prop_log_historical_price",
+        "role": "confounder",
+        "reason": "Pre-treatment price tier of the hotel; proxies quality and promotion propensity."
+      },
+      {
+        "name": "hist_price_zero",
+        "role": "confounder",
+        "reason": "Indicator that the hotel was not sold in the previous period."
+      },
+      {
+        "name": "log_price",
+        "role": "mediator",
+        "reason": "A sale promotion lowers the displayed price, so price lies on the path from treatment to clicks."
+      },
+      {
+        "name": "price_rank_pct",
+        "role": "mediator",
+        "reason": "Derived from the displayed price, which the promotion changes."
+      },
+      {
+        "name": "price_rel_median",
+        "role": "mediator",
+        "reason": "Derived from the displayed price, which the promotion changes."
+      },
+      {
+        "name": "star_rel",
+        "role": "irrelevant",
+        "reason": "Page-relative transform of star rating; redundant with the absolute variable."
+      },
+      {
+        "name": "review_rel",
+        "role": "irrelevant",
+        "reason": "Page-relative transform of review score; redundant."
+      },
+      {
+        "name": "loc1_rel",
+        "role": "irrelevant",
+        "reason": "Page-relative transform of location score 1; redundant."
+      },
+      {
+        "name": "loc2_rel",
+        "role": "irrelevant",
+        "reason": "Page-relative transform of location score 2; redundant."
+      },
+      {
+        "name": "srch_query_affinity_score",
+        "role": "precision",
+        "reason": "Expedia's click-probability signal for the hotel; predicts clicks, with no clear link to promotion."
+      },
+      {
+        "name": "affinity_missing",
+        "role": "precision",
+        "reason": "Missingness indicator for the affinity score."
+      },
+      {
+        "name": "log_distance",
+        "role": "confounder",
+        "reason": "Visitor-hotel distance affects clicks and can be tied to which hotels get promoted."
+      },
+      {
+        "name": "distance_missing",
+        "role": "confounder",
+        "reason": "Missingness indicator for distance."
+      },
+      {
+        "name": "srch_length_of_stay",
+        "role": "confounder",
+        "reason": "Search context may affect promotion eligibility and clicking."
+      },
+      {
+        "name": "srch_booking_window",
+        "role": "confounder",
+        "reason": "Search context may affect promotion eligibility and clicking."
+      },
+      {
+        "name": "srch_adults_count",
+        "role": "precision",
+        "reason": "Search context that predicts clicks."
+      },
+      {
+        "name": "srch_children_count",
+        "role": "precision",
+        "reason": "Search context that predicts clicks."
+      },
+      {
+        "name": "srch_room_count",
+        "role": "precision",
+        "reason": "Search context that predicts clicks."
+      },
+      {
+        "name": "srch_saturday_night_bool",
+        "role": "confounder",
+        "reason": "Stay timing may affect promotions and clicks."
+      },
+      {
+        "name": "n_results",
+        "role": "precision",
+        "reason": "Page size affects click rates."
+      },
+      {
+        "name": "visitor_same_country",
+        "role": "confounder",
+        "reason": "Visitor market affects clicks and promotion patterns."
+      },
+      {
+        "name": "site_5",
+        "role": "confounder",
+        "reason": "Point of sale affects which promotions run and user click behaviour."
+      },
+      {
+        "name": "site_14",
+        "role": "confounder",
+        "reason": "Point of sale affects which promotions run and user click behaviour."
+      },
+      {
+        "name": "site_15",
+        "role": "confounder",
+        "reason": "Point of sale affects which promotions run and user click behaviour."
+      },
+      {
+        "name": "site_24",
+        "role": "confounder",
+        "reason": "Point of sale affects which promotions run and user click behaviour."
+      },
+      {
+        "name": "site_32",
+        "role": "confounder",
+        "reason": "Point of sale affects which promotions run and user click behaviour."
+      },
+      {
+        "name": "search_month",
+        "role": "confounder",
+        "reason": "Seasonality affects promotions and clicks."
+      },
+      {
+        "name": "search_dow",
+        "role": "confounder",
+        "reason": "Timing affects promotions and clicks."
+      },
+      {
+        "name": "search_hour",
+        "role": "confounder",
+        "reason": "Timing affects promotions and clicks."
+      },
+      {
+        "name": "visitor_hist_starrating",
+        "role": "precision",
+        "reason": "Visitor taste predicts clicks; unlikely to affect promotion."
+      },
+      {
+        "name": "visitor_hist_adr_usd",
+        "role": "precision",
+        "reason": "Visitor taste predicts clicks; unlikely to affect promotion."
+      },
+      {
+        "name": "visitor_hist_missing",
+        "role": "precision",
+        "reason": "Missingness indicator for visitor history."
+      },
+      {
+        "name": "comp_expedia_cheaper_n",
+        "role": "mediator",
+        "reason": "Depends on Expedia's displayed price, which the promotion lowers."
+      },
+      {
+        "name": "comp_expedia_dearer_n",
+        "role": "mediator",
+        "reason": "Depends on Expedia's displayed price, which the promotion lowers."
+      }
+    ],
+    "edges": [
+      {
+        "source": "promotion_flag",
+        "target": "click_bool"
+      },
+      {
+        "source": "promotion_flag",
+        "target": "log_price"
+      },
+      {
+        "source": "log_price",
+        "target": "click_bool"
+      },
+      {
+        "source": "log_price",
+        "target": "price_rank_pct"
+      },
+      {
+        "source": "log_price",
+        "target": "price_rel_median"
+      },
+      {
+        "source": "price_rank_pct",
+        "target": "click_bool"
+      },
+      {
+        "source": "price_rel_median",
+        "target": "click_bool"
+      },
+      {
+        "source": "log_price",
+        "target": "comp_expedia_cheaper_n"
+      },
+      {
+        "source": "log_price",
+        "target": "comp_expedia_dearer_n"
+      },
+      {
+        "source": "comp_expedia_cheaper_n",
+        "target": "click_bool"
+      },
+      {
+        "source": "comp_expedia_dearer_n",
+        "target": "click_bool"
+      },
+      {
+        "source": "position",
+        "target": "click_bool"
+      },
+      {
+        "source": "position",
+        "target": "top3"
+      },
+      {
+        "source": "top3",
+        "target": "click_bool"
+      },
+      {
+        "source": "click_bool",
+        "target": "booking_bool"
+      },
+      {
+        "source": "booking_bool",
+        "target": "gross_bookings_usd"
+      },
+      {
+        "source": "prop_starrating",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "prop_starrating",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_starrating",
+        "target": "log_price"
+      },
+      {
+        "source": "star_zero",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "star_zero",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_review_score",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "prop_review_score",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_review_score",
+        "target": "log_price"
+      },
+      {
+        "source": "review_zero",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "review_zero",
+        "target": "click_bool"
+      },
+      {
+        "source": "review_missing",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "review_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_brand_bool",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "prop_brand_bool",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_brand_bool",
+        "target": "log_price"
+      },
+      {
+        "source": "prop_location_score1",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "prop_location_score1",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_location_score1",
+        "target": "log_price"
+      },
+      {
+        "source": "prop_location_score2",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "prop_location_score2",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_location_score2",
+        "target": "log_price"
+      },
+      {
+        "source": "loc2_missing",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "loc2_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_log_historical_price",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "prop_log_historical_price",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_log_historical_price",
+        "target": "log_price"
+      },
+      {
+        "source": "hist_price_zero",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "hist_price_zero",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_query_affinity_score",
+        "target": "click_bool"
+      },
+      {
+        "source": "affinity_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "log_distance",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "log_distance",
+        "target": "click_bool"
+      },
+      {
+        "source": "distance_missing",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "distance_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_length_of_stay",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "srch_length_of_stay",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_booking_window",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "srch_booking_window",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_adults_count",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_children_count",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_room_count",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_saturday_night_bool",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "srch_saturday_night_bool",
+        "target": "click_bool"
+      },
+      {
+        "source": "n_results",
+        "target": "click_bool"
+      },
+      {
+        "source": "visitor_same_country",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "visitor_same_country",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_5",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "site_5",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_14",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "site_14",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_15",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "site_15",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_24",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "site_24",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_32",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "site_32",
+        "target": "click_bool"
+      },
+      {
+        "source": "search_month",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "search_month",
+        "target": "click_bool"
+      },
+      {
+        "source": "search_dow",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "search_dow",
+        "target": "click_bool"
+      },
+      {
+        "source": "search_hour",
+        "target": "promotion_flag"
+      },
+      {
+        "source": "search_hour",
+        "target": "click_bool"
+      },
+      {
+        "source": "visitor_hist_starrating",
+        "target": "click_bool"
+      },
+      {
+        "source": "visitor_hist_adr_usd",
+        "target": "click_bool"
+      },
+      {
+        "source": "visitor_hist_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_starrating",
+        "target": "star_rel"
+      },
+      {
+        "source": "prop_review_score",
+        "target": "review_rel"
+      },
+      {
+        "source": "prop_location_score1",
+        "target": "loc1_rel"
+      },
+      {
+        "source": "prop_location_score2",
+        "target": "loc2_rel"
+      }
+    ],
+    "adjustment_set": [
+      "prop_starrating",
+      "star_zero",
+      "prop_review_score",
+      "review_zero",
+      "review_missing",
+      "prop_brand_bool",
+      "prop_location_score1",
+      "prop_location_score2",
+      "loc2_missing",
+      "prop_log_historical_price",
+      "hist_price_zero",
+      "log_distance",
+      "distance_missing",
+      "srch_length_of_stay",
+      "srch_booking_window",
+      "srch_saturday_night_bool",
+      "visitor_same_country",
+      "site_5",
+      "site_14",
+      "site_15",
+      "site_24",
+      "site_32",
+      "search_month",
+      "search_dow",
+      "search_hour",
+      "position",
+      "srch_adults_count",
+      "srch_children_count",
+      "srch_room_count",
+      "n_results"
+    ],
+    "excluded": [
+      {
+        "name": "top3",
+        "reason": "Deterministic function of position, which is already included; redundant."
+      },
+      {
+        "name": "booking_bool",
+        "reason": "Measured after the click outcome."
+      },
+      {
+        "name": "gross_bookings_usd",
+        "reason": "Measured after the booking, which follows the outcome."
+      },
+      {
+        "name": "log_price",
+        "reason": "Mediator: the sale promotion lowers the displayed price."
+      },
+      {
+        "name": "price_rank_pct",
+        "reason": "Mediator: derived from the displayed price."
+      },
+      {
+        "name": "price_rel_median",
+        "reason": "Mediator: derived from the displayed price."
+      },
+      {
+        "name": "comp_expedia_cheaper_n",
+        "reason": "Downstream of the displayed price, so post-treatment."
+      },
+      {
+        "name": "comp_expedia_dearer_n",
+        "reason": "Downstream of the displayed price, so post-treatment."
+      },
+      {
+        "name": "star_rel",
+        "reason": "Page-relative transform of an included variable; adds nothing."
+      },
+      {
+        "name": "review_rel",
+        "reason": "Page-relative transform of an included variable; adds nothing."
+      },
+      {
+        "name": "loc1_rel",
+        "reason": "Page-relative transform of an included variable; adds nothing."
+      },
+      {
+        "name": "loc2_rel",
+        "reason": "Page-relative transform of an included variable; adds nothing."
+      },
+      {
+        "name": "srch_query_affinity_score",
+        "reason": "Mostly missing and unrelated to promotion assignment; not needed for identification."
+      },
+      {
+        "name": "affinity_missing",
+        "reason": "Mostly missing and unrelated to promotion assignment; not needed for identification."
+      },
+      {
+        "name": "visitor_hist_starrating",
+        "reason": "Mostly missing; affects clicks only, not promotion."
+      },
+      {
+        "name": "visitor_hist_adr_usd",
+        "reason": "Mostly missing; affects clicks only, not promotion."
+      },
+      {
+        "name": "visitor_hist_missing",
+        "reason": "Affects clicks only, not promotion."
+      }
+    ],
+    "unobserved_threats": [
+      "Expedia's internal hotel information used for promotions (commission, margin, inventory)",
+      "Hotel photos, descriptions and other listing quality not in the file",
+      "Visitor intent and unobserved user characteristics",
+      "Whether the hotel's promotion was targeted at particular search contexts"
+    ],
+    "interactions": [],
+    "trim": null
+  },
+  "review": {
+    "decision": "approve",
+    "adjustment_set": null,
+    "notes": ""
+  },
+  "approved_confounders": [
+    "distance_missing",
+    "hist_price_zero",
+    "loc2_missing",
+    "log_distance",
+    "n_results",
+    "position",
+    "prop_brand_bool",
+    "prop_location_score1",
+    "prop_location_score2",
+    "prop_log_historical_price",
+    "prop_review_score",
+    "prop_starrating",
+    "review_missing",
+    "review_zero",
+    "search_dow",
+    "search_hour",
+    "search_month",
+    "site_14",
+    "site_15",
+    "site_24",
+    "site_32",
+    "site_5",
+    "srch_adults_count",
+    "srch_booking_window",
+    "srch_children_count",
+    "srch_length_of_stay",
+    "srch_room_count",
+    "srch_saturday_night_bool",
+    "star_zero",
+    "visitor_same_country"
+  ],
+  "identification": {
+    "valid": true,
+    "problems": [],
+    "d_separated": true,
+    "descendants_in_set": [],
+    "merged_into_treatment": [],
+    "n_nodes": 49,
+    "n_edges": 85
+  },
+  "design": {
+    "proceed": true,
+    "reason": null,
+    "n_treated": 297632,
+    "n_control": 1186606
+  },
+  "estimates": {
+    "naive_untrimmed": {
+      "name": "naive_untrimmed",
+      "estimate": 0.016728788903489833,
+      "se": 0.0004605465537540895,
+      "n_rows": 1484238,
+      "n_groups": 61405,
+      "extra": {
+        "mean_treated": 0.06005066659498979,
+        "mean_control": 0.043321877691499956
+      },
+      "ci_low": 0.015826134244927778,
+      "ci_high": 0.017631443562051888
+    },
+    "naive": {
+      "name": "naive",
+      "estimate": 0.01666563884190351,
+      "se": 0.00046143100254381216,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {
+        "mean_treated": 0.060049394331412445,
+        "mean_control": 0.043383755489508936
+      },
+      "ci_low": 0.015761250695567428,
+      "ci_high": 0.01757002698823959
+    },
+    "regression": {
+      "name": "regression",
+      "estimate": 0.014619664119592889,
+      "se": 0.0004723522752033773,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {},
+      "ci_low": 0.013693870672178718,
+      "ci_high": 0.01554545756700706
+    },
+    "ipw": {
+      "name": "ipw",
+      "estimate": 0.01390465458663346,
+      "se": 0.0005640247611740761,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {
+        "max_weight": 99.89092335138835
+      },
+      "ci_low": 0.012799186368343464,
+      "ci_high": 0.015010122804923455
+    },
+    "aipw": {
+      "name": "aipw",
+      "estimate": 0.013515903684178848,
+      "se": 0.0005142968903297596,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {
+        "mean_control": 0.04410255171205874
+      },
+      "ci_low": 0.012507900301771574,
+      "ci_high": 0.014523907066586123
+    },
+    "dml": {
+      "name": "dml",
+      "estimate": 0.01350632689220879,
+      "se": 0.0004964677683457353,
+      "n_rows": 1469841,
+      "n_groups": 61399,
+      "extra": {
+        "econml_estimate": 0.013506326892208792
+      },
+      "ci_low": 0.012533267946766175,
+      "ci_high": 0.014479385837651406
+    }
+  },
+  "estimation_info": {
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "trimmed_share": 0.009699926831141625,
+    "n_before_trim": 1484238,
+    "covariates": [
+      "prop_starrating",
+      "star_zero",
+      "prop_review_score",
+      "review_zero",
+      "review_missing",
+      "prop_brand_bool",
+      "prop_location_score1",
+      "prop_location_score2",
+      "loc2_missing",
+      "prop_log_historical_price",
+      "hist_price_zero",
+      "log_distance",
+      "distance_missing",
+      "srch_length_of_stay",
+      "srch_booking_window",
+      "srch_saturday_night_bool",
+      "visitor_same_country",
+      "site_5",
+      "site_14",
+      "site_15",
+      "site_24",
+      "site_32",
+      "search_month",
+      "search_dow",
+      "search_hour",
+      "position",
+      "srch_adults_count",
+      "srch_children_count",
+      "srch_room_count",
+      "n_results"
+    ],
+    "propensity_model": "results/models/run-76e19564_a0_propensity.pkl",
+    "synthetic": false
+  },
+  "benchmark": null,
+  "gap": null,
+  "population_checks": null,
+  "refutations": {
+    "overlap": {
+      "check": "overlap",
+      "trimmed_share": 0.009699926831141625,
+      "trim": [
+        0.01,
+        0.99
+      ],
+      "propensity_quantiles": {
+        "0.01": 0.010154624501503109,
+        "0.05": 0.04409529191155219,
+        "0.5": 0.16916870740849171,
+        "0.95": 0.45774143942161777,
+        "0.99": 0.604668606855814
+      },
+      "rule": "share of rows outside [0.01, 0.99] <= 0.3",
+      "passed": true
+    },
+    "balance": {
+      "check": "balance",
+      "max_abs_smd_after": 0.05388548523233555,
+      "worst_covariate": "star_zero",
+      "failing": [],
+      "skipped_too_few_observed": [],
+      "rule": "all |SMD| after weighting < 0.1",
+      "passed": true
+    },
+    "placebo": {
+      "check": "placebo",
+      "estimate": -0.0004577655958052901,
+      "ci": [
+        -0.0012883790536404281,
+        0.000372847862029848
+      ],
+      "single_run_se": 0.0004237901636902061,
+      "rule": "average of 5 permutation estimates within +/-1.96 single-run standard errors of zero",
+      "passed": true
+    },
+    "random_common_cause": {
+      "check": "random_common_cause",
+      "estimate": 0.01346187007014649,
+      "shift_in_se": 0.10506307747206597,
+      "rule": "estimate moves by < 0.5 standard errors",
+      "passed": true
+    },
+    "subset_stability": {
+      "check": "subset_stability",
+      "share_inside": 0.95,
+      "rule": "at least 80% of 20 half-sample estimates inside the full-sample 95% interval",
+      "passed": true
+    },
+    "sensitivity": {
+      "check": "sensitivity",
+      "ols_estimate": 0.014619664119603493,
+      "ols_se_classical": 0.00044320292978201447,
+      "partial_r2_treatment_outcome": 0.0007397538813734402,
+      "robustness_value_q1": 0.026840849475592163,
+      "strongest_benchmark_covariate": "n_results",
+      "bound_at_strongest": {
+        "r2dz_x": 0.0012777947052447203,
+        "r2yz_dx": 0.004974911236316325,
+        "bias": 0.0013556074006368323,
+        "adjusted_estimate": 0.01326405671896666
+      },
+      "ols_se_cluster": 0.00047235227520328225,
+      "adjusted_ci_cluster": [
+        0.012339978118710862,
+        0.014188135319222459
+      ],
+      "e_value": 1.939226239784435,
+      "e_value_ci": 1.8869698412848115,
+      "rule": "effect keeps its sign with a hidden confounder kd=1.0, ky=1.0 times the strongest covariate",
+      "passed": true
+    },
+    "held_out_covariate": {
+      "check": "held_out_covariate",
+      "covariate": "prop_location_score2",
+      "also_left_out": [
+        "loc2_missing",
+        "loc2_rel"
+      ],
+      "estimate": 0.0064483566308668975,
+      "estimate_in_sd": 0.03853510392117097,
+      "ci": [
+        0.005369661948222176,
+        0.007527051313511619
+      ],
+      "rule": "reported, not pass or fail",
+      "passed": null
+    }
+  },
+  "verdict": {
+    "route": "pass",
+    "failures": [],
+    "rationale": "The run passed because all six gating checks cleared their thresholds: overlap, balance, placebo, random common cause, subset stability, and sensitivity. Overlap left enough shared support between treated and untreated rows, and balance brought every standardized mean difference below the cutoff after weighting. The placebo average stayed within its standard error band, the random common cause check moved the estimate only slightly, and subset stability and sensitivity both preserved the effect's sign and interval. The held out covariate check was reported for information only and did not factor into the pass decision."
+  },
+  "heterogeneity": null,
+  "attempts": 0,
+  "history": [
+    {
+      "attempt": 0,
+      "adjustment_set_size": 30,
+      "trim": [
+        0.01,
+        0.99
+      ],
+      "interactions": [],
+      "failures": [],
+      "route": "pass",
+      "primary_estimate": 0.013515903684178848
+    }
+  ],
+  "notes": [],
+  "report_path": "results/runs/run-76e19564/report.md",
+  "outcome_status": "reported",
+  "code_version": "5b82799dae8b"
+}

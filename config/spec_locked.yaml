@@ -1,0 +1,107 @@
+# Reference specification for Q1, committed at the end of Phase 1,
+# before the benchmark module is run or any experimental-arm outcome is viewed.
+# Do not edit after seeing the benchmark. A change made later is exploratory and
+# must be labelled as such in the report.
+#
+# Phase 1 EDA findings that shaped it (full file, 9,917,530 rows, 399,344 searches):
+#   - 30.4% of searches are randomly ranked (spec said about one third).
+#   - Every search has at least one click, in both arms: rates are conditional on that.
+#   - 94% of algorithm-ranked searches contain a booking against 13% of randomly ranked
+#     ones, so bookings were sampled differently across arms. Click is the Q1 outcome.
+#   - Positions 5, 11, 17 and 23 hold about 7% of the rows of their neighbours in BOTH
+#     arms (reserved slots). They are dropped from both arms.
+#   - The arms describe different searches: mean length of stay 2.2 vs 2.9 nights, booking
+#     window 33 vs 49 days. A reweighted benchmark is therefore reported too.
+#   - prop_starrating, prop_review_score and prop_log_historical_price use 0 as a state
+#     (3.4%, 4.7% and 14.4% of rows); prop_review_score also has 0.15% true nulls.
+
+question: Q1
+treatment: top3            # position 1-3 = 1; positions 4-10 minus reserved = 0
+outcome: click_bool
+unit: impression           # one hotel shown in one search
+group: srch_id
+population: algorithm-ranked searches, positions 1-10 without reserved slots, searches with at least one control row
+target_arm: observational
+
+estimators: [naive, regression, ipw, aipw, dml]
+primary_estimator: aipw
+trim: [0.01, 0.99]
+cv_folds: 5
+
+adjustment_set:
+  # hotel attributes
+  - prop_starrating
+  - prop_review_score
+  - prop_brand_bool
+  - prop_location_score1
+  - prop_location_score2
+  - prop_log_historical_price
+  - star_zero
+  - review_zero
+  - review_missing
+  - hist_price_zero
+  - loc2_missing
+  # displayed price, within-search price position, promotion
+  - log_price
+  - price_rank_pct
+  - price_rel_median
+  - promotion_flag
+  # quality relative to the rest of the page (the ranker sorts within a page)
+  - star_rel
+  - review_rel
+  - loc1_rel
+  - loc2_rel
+  # query-hotel match
+  - srch_query_affinity_score
+  - affinity_missing
+  - log_distance
+  - distance_missing
+  # search context, including the number of results
+  - srch_length_of_stay
+  - srch_booking_window
+  - srch_adults_count
+  - srch_children_count
+  - srch_room_count
+  - srch_saturday_night_bool
+  - n_results
+  - visitor_same_country
+  - site_5
+  - site_14
+  - site_15
+  - site_24
+  - site_32
+  - search_month
+  - search_dow
+  - search_hour
+  # visitor history and competitor prices
+  - visitor_hist_starrating
+  - visitor_hist_adr_usd
+  - visitor_hist_missing
+  - comp_expedia_cheaper_n
+  - comp_expedia_dearer_n
+
+never_adjust:
+  - click_bool          # the outcome
+  - booking_bool        # downstream of the click
+  - gross_bookings_usd  # post-outcome
+  - position            # defines the treatment
+
+held_out_covariate: prop_location_score2
+
+unobserved_threats:
+  - ranker_score: Expedia's internal ranking score and anything it knows that the file does not (photos, past performance of the hotel). Assumed captured by the adjustment set; the sensitivity analysis measures how strong a violation would have to be.
+
+# Disclosure: the Phase 1 EDA table of click rate by position was printed for BOTH arms
+# (the spec's Phase 1 check asks for click rates per arm). The choices above follow from
+# row counts and the spec, not from those click rates, but the reader should know they
+# were visible when this file was written.
+#
+# Decisions the spec left open, fixed here before any estimate:
+#   - Failure of the placebo, random-common-cause or subset-stability check routes to
+#     refusal (the estimate is unstable), like overlap and sensitivity failures.
+#     Revised during the build, before any Q1 run had a failed check: when balance fails
+#     together with a stability check, the run is re-specified first (attempts permitting);
+#     overlap or sensitivity failures still refuse at once. This is agent routing, not part
+#     of the observational specification, and it changes no Q1 result.
+#   - Refuter re-estimates use 2 cross-fitting folds (config: refuter_cv_folds) for runtime.
+#   - Overlap fails if more than 30% of rows fall outside the trimming range.

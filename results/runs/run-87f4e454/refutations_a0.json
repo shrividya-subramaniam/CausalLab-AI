@@ -1,0 +1,406 @@
+{
+  "overlap": {
+    "check": "overlap",
+    "trimmed_share": 0.009332735046535645,
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "propensity_quantiles": {
+      "0.01": 0.01037918234528916,
+      "0.05": 0.0442520880578833,
+      "0.5": 0.16902612959064242,
+      "0.95": 0.4581433870040971,
+      "0.99": 0.6018869148645521
+    },
+    "rule": "share of rows outside [0.01, 0.99] <= 0.3",
+    "passed": true
+  },
+  "balance": {
+    "check": "balance",
+    "max_abs_smd_after": 0.05669063263236726,
+    "worst_covariate": "star_zero",
+    "smd_before": {
+      "prop_starrating": 0.39217683026972194,
+      "star_zero": -0.20882936123731297,
+      "prop_review_score": 0.044091242781641025,
+      "review_zero": -0.16847694373469263,
+      "review_missing": -0.01875024620429051,
+      "prop_brand_bool": -0.2501970072260762,
+      "prop_location_score1": 0.35685433411390527,
+      "prop_location_score2": 0.1576414451101908,
+      "loc2_missing": -0.215572700001429,
+      "prop_log_historical_price": 0.296882498758103,
+      "hist_price_zero": -0.005862604875524899,
+      "srch_query_affinity_score": 0.14000135636186659,
+      "affinity_missing": 0.009790295625845264,
+      "log_distance": 0.25303152157961734,
+      "distance_missing": 0.07104373444284631,
+      "visitor_same_country": -0.24890809112197376,
+      "srch_length_of_stay": 0.25291810656149377,
+      "srch_booking_window": 0.06596615406144364,
+      "srch_saturday_night_bool": -0.12950956498546184,
+      "site_5": -0.13204473788278612,
+      "site_14": 0.023282801268355576,
+      "site_15": -0.03311763892651538,
+      "site_24": 0.11374380897827968,
+      "site_32": 0.05566189884651879,
+      "search_month": 0.006880560656978144,
+      "search_dow": -0.006232482620666298,
+      "search_hour": 0.025093286224352526,
+      "position": -0.02573870415712401,
+      "srch_adults_count": 0.04974173008408944,
+      "srch_children_count": 0.004877321798824368,
+      "srch_room_count": 0.027568893236755068,
+      "n_results": 0.06682151607252688,
+      "visitor_hist_starrating": 0.10948187710362813,
+      "visitor_hist_adr_usd": 0.05714756769501688,
+      "visitor_hist_missing": 0.009713479053387144
+    },
+    "smd_after": {
+      "prop_starrating": 0.021582233867820634,
+      "star_zero": -0.05669063263236726,
+      "prop_review_score": -0.0013503060707740395,
+      "review_zero": -0.021081947175386986,
+      "review_missing": 0.012602866788932288,
+      "prop_brand_bool": -0.011645133365948773,
+      "prop_location_score1": 0.0016904957090833161,
+      "prop_location_score2": -0.011475557794448244,
+      "loc2_missing": -0.009214540816235075,
+      "prop_log_historical_price": -0.005186555787201305,
+      "hist_price_zero": 0.0026646826241299784,
+      "srch_query_affinity_score": 0.027256857514866964,
+      "affinity_missing": -0.011181141233332543,
+      "log_distance": 0.0028359625048758105,
+      "distance_missing": 0.006412109988810018,
+      "visitor_same_country": -0.01810598512696115,
+      "srch_length_of_stay": 0.01858737583644261,
+      "srch_booking_window": -0.018482180803813582,
+      "srch_saturday_night_bool": -0.002217953779875284,
+      "site_5": -0.021255966454336667,
+      "site_14": 0.008759149465130948,
+      "site_15": -0.01604353713761136,
+      "site_24": 0.01441995369817857,
+      "site_32": -0.0002658894168656274,
+      "search_month": 0.011111739475600919,
+      "search_dow": 0.002577620025922045,
+      "search_hour": 0.010439336452671977,
+      "position": -0.0121452776632458,
+      "srch_adults_count": 0.011470351724008225,
+      "srch_children_count": 0.004496597263076065,
+      "srch_room_count": 0.010312411819785216,
+      "n_results": 0.01923376415759583,
+      "visitor_hist_starrating": 0.006219097879206845,
+      "visitor_hist_adr_usd": 0.004248653751851357,
+      "visitor_hist_missing": 0.008598528635506279
+    },
+    "failing": [],
+    "skipped_too_few_observed": [],
+    "rule": "all |SMD| after weighting < 0.1",
+    "passed": true
+  },
+  "placebo": {
+    "check": "placebo",
+    "estimate": -6.139953981144241e-05,
+    "ci": [
+      -0.00035420318375783673,
+      0.0002314041041349519
+    ],
+    "estimates": [
+      -0.00027111041726584115,
+      0.00017823070318550717,
+      -0.00012177604330756358,
+      -6.429670644711075e-05,
+      -2.804523522220374e-05
+    ],
+    "single_run_se": 0.00014939235937802537,
+    "rule": "average of 5 permutation estimates within +/-1.96 single-run standard errors of zero",
+    "passed": true
+  },
+  "random_common_cause": {
+    "check": "random_common_cause",
+    "estimate": 0.0025728821669887057,
+    "shift_in_se": 0.204770324044227,
+    "rule": "estimate moves by < 0.5 standard errors",
+    "passed": true
+  },
+  "subset_stability": {
+    "check": "subset_stability",
+    "estimates": [
+      0.002630017130429977,
+      0.0024944753368521615,
+      0.0023657069221644897,
+      0.002570110154496126,
+      0.00205070120050108,
+      0.002506363688590818,
+      0.0023679470345288087,
+      0.002456910350600917,
+      0.002924009713921994,
+      0.0025593736622140833,
+      0.0028088882927181616,
+      0.0023592416940950546,
+      0.0026766785802553646,
+      0.0026956496632852454,
+      0.002214073689071849,
+      0.0020472722384694557,
+      0.0024368323982285694,
+      0.0025658724602557253,
+      0.002603970919067298,
+      0.0025801099304879845
+    ],
+    "share_inside": 0.85,
+    "rule": "at least 80% of 20 half-sample estimates inside the full-sample 95% interval",
+    "passed": true
+  },
+  "sensitivity": {
+    "check": "sensitivity",
+    "ols_estimate": 0.002321227818272932,
+    "ols_se_classical": 0.00015544915792246148,
+    "partial_r2_treatment_outcome": 0.0001516255886877358,
+    "robustness_value_q1": 0.01223897703952896,
+    "strongest_benchmark_covariate": "srch_length_of_stay",
+    "bound_at_strongest": {
+      "r2dz_x": 0.004934110420089116,
+      "r2yz_dx": 0.00032604478008033973,
+      "bias": 0.00023967113219751197,
+      "adjusted_estimate": 0.00208155668607542
+    },
+    "bounds": {
+      "prop_starrating": {
+        "r2dz_x": 0.012699273186555133,
+        "r2yz_dx": 4.4635550067584745e-05,
+        "bias": 0.00014282483769051843,
+        "adjusted_estimate": 0.0021784029805824137
+      },
+      "star_zero": {
+        "r2dz_x": 0.004235077171788511,
+        "r2yz_dx": 4.964852541064105e-06,
+        "bias": 2.739075596301557e-05,
+        "adjusted_estimate": 0.0022938370623099163
+      },
+      "prop_review_score": {
+        "r2dz_x": 0.0019074622479183874,
+        "r2yz_dx": 5.269210957711567e-05,
+        "bias": 5.9815529770924675e-05,
+        "adjusted_estimate": 0.0022614122885020074
+      },
+      "review_zero": {
+        "r2dz_x": 0.00360545022131978,
+        "r2yz_dx": 1.1988811129665736e-05,
+        "bias": 3.926003916709133e-05,
+        "adjusted_estimate": 0.002281967779105841
+      },
+      "review_missing": {
+        "r2dz_x": 5.714714585650481e-05,
+        "r2yz_dx": 1.1294749132656184e-06,
+        "bias": 1.5144207999808235e-06,
+        "adjusted_estimate": 0.002319713397472951
+      },
+      "prop_brand_bool": {
+        "r2dz_x": 0.007158307654969997,
+        "r2yz_dx": 8.882519871513323e-05,
+        "bias": 0.00015084532663566061,
+        "adjusted_estimate": 0.0021703824916372715
+      },
+      "prop_location_score1": {
+        "r2dz_x": 0.003017837406123476,
+        "r2yz_dx": 0.00016225070395991907,
+        "bias": 0.00013209795928285258,
+        "adjusted_estimate": 0.0021891298589900793
+      },
+      "prop_location_score2": {
+        "r2dz_x": 0.00024574127585548126,
+        "r2yz_dx": 0.0008503485367412706,
+        "bias": 8.617662795518032e-05,
+        "adjusted_estimate": 0.0022350511903177516
+      },
+      "loc2_missing": {
+        "r2dz_x": 0.0008055005162152727,
+        "r2yz_dx": 0.0002219312700835028,
+        "bias": 7.97288927097972e-05,
+        "adjusted_estimate": 0.0022414989255631346
+      },
+      "prop_log_historical_price": {
+        "r2dz_x": 2.4437197966627886e-05,
+        "r2yz_dx": 0.0001933465238344159,
+        "bias": 1.2956800841145151e-05,
+        "adjusted_estimate": 0.0023082710174317867
+      },
+      "hist_price_zero": {
+        "r2dz_x": 8.077763461599125e-06,
+        "r2yz_dx": 1.2774458302573207e-07,
+        "bias": 1.9147723853612236e-07,
+        "adjusted_estimate": 0.002321036341034396
+      },
+      "srch_query_affinity_score": {
+        "r2dz_x": 1.5752679046159987e-05,
+        "r2yz_dx": 6.219631273670872e-05,
+        "bias": 5.900129464276911e-06,
+        "adjusted_estimate": 0.002315327688808655
+      },
+      "affinity_missing": {
+        "r2dz_x": 6.88705385887132e-05,
+        "r2yz_dx": 0.00018521641720147715,
+        "bias": 2.128972363208658e-05,
+        "adjusted_estimate": 0.0022999380946408456
+      },
+      "log_distance": {
+        "r2dz_x": 0.00044041595374541114,
+        "r2yz_dx": 9.198554806843127e-06,
+        "bias": 1.2000119383768727e-05,
+        "adjusted_estimate": 0.002309227698889163
+      },
+      "distance_missing": {
+        "r2dz_x": 4.0636429125002895e-05,
+        "r2yz_dx": 2.570526160086291e-06,
+        "bias": 1.926531863140709e-06,
+        "adjusted_estimate": 0.0023193012864097915
+      },
+      "visitor_same_country": {
+        "r2dz_x": 0.000561935735419471,
+        "r2yz_dx": 7.0325760115826025e-06,
+        "bias": 1.1852806356293167e-05,
+        "adjusted_estimate": 0.002309375011916639
+      },
+      "srch_length_of_stay": {
+        "r2dz_x": 0.004934110420089116,
+        "r2yz_dx": 0.00032604478008033973,
+        "bias": 0.00023967113219751197,
+        "adjusted_estimate": 0.00208155668607542
+      },
+      "srch_booking_window": {
+        "r2dz_x": 0.0009702270811562727,
+        "r2yz_dx": 0.0002342780297095867,
+        "bias": 8.991079778319495e-05,
+        "adjusted_estimate": 0.002231317020489737
+      },
+      "srch_saturday_night_bool": {
+        "r2dz_x": 2.3022626654465248e-05,
+        "r2yz_dx": 1.0724525884821508e-05,
+        "bias": 2.9618978378759634e-06,
+        "adjusted_estimate": 0.002318265920435056
+      },
+      "site_5": {
+        "r2dz_x": 5.8230336413073766e-05,
+        "r2yz_dx": 3.623931121103961e-05,
+        "bias": 8.659161723296582e-06,
+        "adjusted_estimate": 0.0023125686565496355
+      },
+      "site_14": {
+        "r2dz_x": 3.400465390260158e-05,
+        "r2yz_dx": 1.4905519046979526e-05,
+        "bias": 4.243739378026855e-06,
+        "adjusted_estimate": 0.002316984078894905
+      },
+      "site_15": {
+        "r2dz_x": 0.00047089225294449677,
+        "r2yz_dx": 4.3795136226911773e-05,
+        "bias": 2.7075381186244262e-05,
+        "adjusted_estimate": 0.002294152437086688
+      },
+      "site_24": {
+        "r2dz_x": 0.0007412922000593479,
+        "r2yz_dx": 4.4713935369942385e-07,
+        "bias": 3.4330156315035302e-06,
+        "adjusted_estimate": 0.0023177948026414283
+      },
+      "site_32": {
+        "r2dz_x": 0.00013093564487968895,
+        "r2yz_dx": 1.3962991121183272e-06,
+        "bias": 2.548855410900625e-06,
+        "adjusted_estimate": 0.0023186789628620312
+      },
+      "search_month": {
+        "r2dz_x": 9.037388863489445e-07,
+        "r2yz_dx": 1.5585334975825544e-06,
+        "bias": 2.23706364787915e-07,
+        "adjusted_estimate": 0.002321004111908144
+      },
+      "search_dow": {
+        "r2dz_x": 1.5608989678857213e-06,
+        "r2yz_dx": 6.78367106429158e-08,
+        "bias": 6.133646112501083e-08,
+        "adjusted_estimate": 0.002321166481811807
+      },
+      "search_hour": {
+        "r2dz_x": 3.51950610686037e-05,
+        "r2yz_dx": 5.272883202164392e-07,
+        "bias": 8.120283073014579e-07,
+        "adjusted_estimate": 0.0023204157899656304
+      },
+      "position": {
+        "r2dz_x": 0.00010362702338785787,
+        "r2yz_dx": 0.0008470501953488778,
+        "bias": 5.584858546662511e-05,
+        "adjusted_estimate": 0.002265379232806307
+      },
+      "srch_adults_count": {
+        "r2dz_x": 0.0003167469474763401,
+        "r2yz_dx": 8.86955594853292e-05,
+        "bias": 3.1599087286689426e-05,
+        "adjusted_estimate": 0.0022896287309862426
+      },
+      "srch_children_count": {
+        "r2dz_x": 8.013276849212826e-05,
+        "r2yz_dx": 4.0720212464870714e-07,
+        "bias": 1.0767777717600623e-06,
+        "adjusted_estimate": 0.0023201510405011718
+      },
+      "srch_room_count": {
+        "r2dz_x": 4.143234685343675e-06,
+        "r2yz_dx": 6.784959198436141e-05,
+        "bias": 3.16040598664603e-06,
+        "adjusted_estimate": 0.002318067412286286
+      },
+      "n_results": {
+        "r2dz_x": 0.0012641729597474536,
+        "r2yz_dx": 0.0007874551324750192,
+        "bias": 0.0001881869188570514,
+        "adjusted_estimate": 0.0021330408994158804
+      },
+      "visitor_hist_starrating": {
+        "r2dz_x": 1.1694903343740173e-05,
+        "r2yz_dx": 5.584207664880673e-06,
+        "bias": 1.5232817086822694e-06,
+        "adjusted_estimate": 0.0023197045365642498
+      },
+      "visitor_hist_adr_usd": {
+        "r2dz_x": 1.3733765211420637e-07,
+        "r2yz_dx": 5.837423025987555e-07,
+        "bias": 5.3370836729876785e-08,
+        "adjusted_estimate": 0.0023211744474362023
+      },
+      "visitor_hist_missing": {
+        "r2dz_x": 5.56336720170507e-05,
+        "r2yz_dx": 0.00016634157840512032,
+        "bias": 1.8133429245802006e-05,
+        "adjusted_estimate": 0.00230309438902713
+      }
+    },
+    "ols_se_cluster": 0.00016906867983315448,
+    "adjusted_ci_cluster": [
+      0.001749421666236748,
+      0.002413691705914092
+    ],
+    "e_value": 2.3874645193943524,
+    "e_value_ci": 2.218736289129063,
+    "rule": "effect keeps its sign with a hidden confounder kd=1.0, ky=1.0 times the strongest covariate",
+    "passed": true
+  },
+  "held_out_covariate": {
+    "check": "held_out_covariate",
+    "covariate": "prop_location_score2",
+    "also_left_out": [
+      "loc2_missing",
+      "loc2_rel"
+    ],
+    "estimate": 0.00636073593979027,
+    "estimate_in_sd": 0.03800163869212509,
+    "ci": [
+      0.0052839065696003735,
+      0.007437565309980167
+    ],
+    "rule": "reported, not pass or fail",
+    "passed": null
+  }
+}

@@ -1,0 +1,1187 @@
+{
+  "run_id": "run-ff2df23c",
+  "question": "What is the causal effect of a top-3 position on the probability a listing is clicked?",
+  "dataset": "expedia",
+  "offline": false,
+  "synthetic": false,
+  "auto_approve": false,
+  "run_heterogeneity": false,
+  "exploratory": false,
+  "adjustment_override": null,
+  "spec": {
+    "treatment": "top3",
+    "outcome": "click_bool",
+    "unit": "one hotel displayed in one search results page",
+    "population": "all hotel-in-search rows in the observational arm (algorithm-ranked searches)",
+    "target_arm": "observational"
+  },
+  "profile": {
+    "rows": 1218303,
+    "groups": 140424,
+    "arm": "observational",
+    "treatment_share": 0.3455987549895223,
+    "outcome_rate": 0.09439687828069043,
+    "columns": 57,
+    "most_missing": {
+      "visitor_hist_starrating": 0.9372627334907654,
+      "visitor_hist_adr_usd": 0.9370214142130489,
+      "srch_query_affinity_score": 0.9252016944881528,
+      "gross_bookings_usd": 0.9179013759302899,
+      "log_distance": 0.3268702449226506,
+      "prop_log_historical_price": 0.1453497200614297,
+      "prop_location_score2": 0.13794679976984378,
+      "loc2_rel": 0.13794679976984378
+    }
+  },
+  "dag": {
+    "roles": [
+      {
+        "name": "top3",
+        "role": "treatment",
+        "reason": "Indicator for display in positions 1-3 versus 4-10."
+      },
+      {
+        "name": "click_bool",
+        "role": "outcome",
+        "reason": "Click on the listing."
+      },
+      {
+        "name": "position",
+        "role": "design",
+        "reason": "Rank that top3 is computed from; merged into the treatment node."
+      },
+      {
+        "name": "booking_bool",
+        "role": "post_outcome",
+        "reason": "Requires a click first, so it is measured after the outcome."
+      },
+      {
+        "name": "gross_bookings_usd",
+        "role": "post_outcome",
+        "reason": "Recorded after the booking, so after the outcome."
+      },
+      {
+        "name": "promotion_flag",
+        "role": "confounder",
+        "reason": "Promotion badge can influence both the ranking and clicks."
+      },
+      {
+        "name": "prop_starrating",
+        "role": "confounder",
+        "reason": "Hotel quality feeds the ranking and drives clicks."
+      },
+      {
+        "name": "star_zero",
+        "role": "confounder",
+        "reason": "Missingness indicator for the star rating, needed alongside it."
+      },
+      {
+        "name": "prop_review_score",
+        "role": "confounder",
+        "reason": "Review quality feeds the ranking and drives clicks."
+      },
+      {
+        "name": "review_zero",
+        "role": "confounder",
+        "reason": "No-reviews indicator that affects the ranking and clicks."
+      },
+      {
+        "name": "review_missing",
+        "role": "confounder",
+        "reason": "Missingness indicator for the review score."
+      },
+      {
+        "name": "prop_brand_bool",
+        "role": "confounder",
+        "reason": "Chain affiliation affects the ranking and clicks."
+      },
+      {
+        "name": "prop_location_score1",
+        "role": "confounder",
+        "reason": "Location desirability feeds the ranking and drives clicks."
+      },
+      {
+        "name": "prop_location_score2",
+        "role": "confounder",
+        "reason": "Location desirability feeds the ranking and drives clicks."
+      },
+      {
+        "name": "loc2_missing",
+        "role": "confounder",
+        "reason": "Missingness indicator for location score 2."
+      },
+      {
+        "name": "prop_log_historical_price",
+        "role": "confounder",
+        "reason": "Historical price level is a hotel attribute used by the ranker and valued by users."
+      },
+      {
+        "name": "hist_price_zero",
+        "role": "confounder",
+        "reason": "Indicator for a hotel not sold in the prior period, which can affect the ranking and clicks."
+      },
+      {
+        "name": "log_price",
+        "role": "confounder",
+        "reason": "Displayed price affects both the ranking and clicks."
+      },
+      {
+        "name": "price_rank_pct",
+        "role": "confounder",
+        "reason": "Page-relative price is a pre-display attribute that affects the ranking and clicks."
+      },
+      {
+        "name": "price_rel_median",
+        "role": "confounder",
+        "reason": "Page-relative price is a pre-display attribute that affects the ranking and clicks."
+      },
+      {
+        "name": "star_rel",
+        "role": "confounder",
+        "reason": "Relative quality on the page affects the ranking and clicks."
+      },
+      {
+        "name": "review_rel",
+        "role": "confounder",
+        "reason": "Relative review score on the page affects the ranking and clicks."
+      },
+      {
+        "name": "loc1_rel",
+        "role": "confounder",
+        "reason": "Relative location on the page affects the ranking and clicks."
+      },
+      {
+        "name": "loc2_rel",
+        "role": "confounder",
+        "reason": "Relative location on the page affects the ranking and clicks."
+      },
+      {
+        "name": "srch_query_affinity_score",
+        "role": "confounder",
+        "reason": "Expedia's click-probability score is likely used by the ranker and predicts clicks."
+      },
+      {
+        "name": "affinity_missing",
+        "role": "confounder",
+        "reason": "Missingness indicator for the affinity score."
+      },
+      {
+        "name": "log_distance",
+        "role": "confounder",
+        "reason": "Distance affects the personalised ranking and click propensity."
+      },
+      {
+        "name": "distance_missing",
+        "role": "confounder",
+        "reason": "Missingness indicator for distance."
+      },
+      {
+        "name": "srch_length_of_stay",
+        "role": "confounder",
+        "reason": "Search context affects the ranking and click behaviour."
+      },
+      {
+        "name": "srch_booking_window",
+        "role": "confounder",
+        "reason": "Search context affects the ranking and click behaviour."
+      },
+      {
+        "name": "srch_adults_count",
+        "role": "confounder",
+        "reason": "Search context affects the ranking and click behaviour."
+      },
+      {
+        "name": "srch_children_count",
+        "role": "confounder",
+        "reason": "Search context affects the ranking and click behaviour."
+      },
+      {
+        "name": "srch_room_count",
+        "role": "confounder",
+        "reason": "Search context affects the ranking and click behaviour."
+      },
+      {
+        "name": "srch_saturday_night_bool",
+        "role": "confounder",
+        "reason": "Search context affects the ranking and click behaviour."
+      },
+      {
+        "name": "n_results",
+        "role": "confounder",
+        "reason": "Page size affects the share of listings in the top 3 and clicks."
+      },
+      {
+        "name": "visitor_same_country",
+        "role": "confounder",
+        "reason": "Domestic or foreign visitor status affects the ranking and clicks."
+      },
+      {
+        "name": "site_5",
+        "role": "confounder",
+        "reason": "Point of sale affects the ranking algorithm and user behaviour."
+      },
+      {
+        "name": "site_14",
+        "role": "confounder",
+        "reason": "Point of sale affects the ranking algorithm and user behaviour."
+      },
+      {
+        "name": "site_15",
+        "role": "confounder",
+        "reason": "Point of sale affects the ranking algorithm and user behaviour."
+      },
+      {
+        "name": "site_24",
+        "role": "confounder",
+        "reason": "Point of sale affects the ranking algorithm and user behaviour."
+      },
+      {
+        "name": "site_32",
+        "role": "confounder",
+        "reason": "Point of sale affects the ranking algorithm and user behaviour."
+      },
+      {
+        "name": "search_month",
+        "role": "confounder",
+        "reason": "Seasonality affects the ranking and demand."
+      },
+      {
+        "name": "search_dow",
+        "role": "confounder",
+        "reason": "Timing affects the ranking and demand."
+      },
+      {
+        "name": "search_hour",
+        "role": "confounder",
+        "reason": "Timing affects the ranking and demand."
+      },
+      {
+        "name": "visitor_hist_starrating",
+        "role": "confounder",
+        "reason": "Visitor taste for stars may affect personalised ranking and clicks."
+      },
+      {
+        "name": "visitor_hist_adr_usd",
+        "role": "confounder",
+        "reason": "Visitor price level may affect personalised ranking and clicks."
+      },
+      {
+        "name": "visitor_hist_missing",
+        "role": "confounder",
+        "reason": "Indicator for no booking history."
+      },
+      {
+        "name": "comp_expedia_cheaper_n",
+        "role": "confounder",
+        "reason": "Competitive price position may affect the ranking and clicks."
+      },
+      {
+        "name": "comp_expedia_dearer_n",
+        "role": "confounder",
+        "reason": "Competitive price position may affect the ranking and clicks."
+      }
+    ],
+    "edges": [
+      {
+        "source": "position",
+        "target": "top3"
+      },
+      {
+        "source": "top3",
+        "target": "click_bool"
+      },
+      {
+        "source": "position",
+        "target": "click_bool"
+      },
+      {
+        "source": "click_bool",
+        "target": "booking_bool"
+      },
+      {
+        "source": "booking_bool",
+        "target": "gross_bookings_usd"
+      },
+      {
+        "source": "top3",
+        "target": "booking_bool"
+      },
+      {
+        "source": "log_price",
+        "target": "price_rank_pct"
+      },
+      {
+        "source": "log_price",
+        "target": "price_rel_median"
+      },
+      {
+        "source": "prop_starrating",
+        "target": "star_rel"
+      },
+      {
+        "source": "prop_review_score",
+        "target": "review_rel"
+      },
+      {
+        "source": "prop_location_score1",
+        "target": "loc1_rel"
+      },
+      {
+        "source": "prop_location_score2",
+        "target": "loc2_rel"
+      },
+      {
+        "source": "promotion_flag",
+        "target": "top3"
+      },
+      {
+        "source": "promotion_flag",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_starrating",
+        "target": "top3"
+      },
+      {
+        "source": "prop_starrating",
+        "target": "click_bool"
+      },
+      {
+        "source": "star_zero",
+        "target": "top3"
+      },
+      {
+        "source": "star_zero",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_review_score",
+        "target": "top3"
+      },
+      {
+        "source": "prop_review_score",
+        "target": "click_bool"
+      },
+      {
+        "source": "review_zero",
+        "target": "top3"
+      },
+      {
+        "source": "review_zero",
+        "target": "click_bool"
+      },
+      {
+        "source": "review_missing",
+        "target": "top3"
+      },
+      {
+        "source": "review_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_brand_bool",
+        "target": "top3"
+      },
+      {
+        "source": "prop_brand_bool",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_location_score1",
+        "target": "top3"
+      },
+      {
+        "source": "prop_location_score1",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_location_score2",
+        "target": "top3"
+      },
+      {
+        "source": "prop_location_score2",
+        "target": "click_bool"
+      },
+      {
+        "source": "loc2_missing",
+        "target": "top3"
+      },
+      {
+        "source": "loc2_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "prop_log_historical_price",
+        "target": "top3"
+      },
+      {
+        "source": "prop_log_historical_price",
+        "target": "click_bool"
+      },
+      {
+        "source": "hist_price_zero",
+        "target": "top3"
+      },
+      {
+        "source": "hist_price_zero",
+        "target": "click_bool"
+      },
+      {
+        "source": "log_price",
+        "target": "top3"
+      },
+      {
+        "source": "log_price",
+        "target": "click_bool"
+      },
+      {
+        "source": "price_rank_pct",
+        "target": "top3"
+      },
+      {
+        "source": "price_rank_pct",
+        "target": "click_bool"
+      },
+      {
+        "source": "price_rel_median",
+        "target": "top3"
+      },
+      {
+        "source": "price_rel_median",
+        "target": "click_bool"
+      },
+      {
+        "source": "star_rel",
+        "target": "top3"
+      },
+      {
+        "source": "star_rel",
+        "target": "click_bool"
+      },
+      {
+        "source": "review_rel",
+        "target": "top3"
+      },
+      {
+        "source": "review_rel",
+        "target": "click_bool"
+      },
+      {
+        "source": "loc1_rel",
+        "target": "top3"
+      },
+      {
+        "source": "loc1_rel",
+        "target": "click_bool"
+      },
+      {
+        "source": "loc2_rel",
+        "target": "top3"
+      },
+      {
+        "source": "loc2_rel",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_query_affinity_score",
+        "target": "top3"
+      },
+      {
+        "source": "srch_query_affinity_score",
+        "target": "click_bool"
+      },
+      {
+        "source": "affinity_missing",
+        "target": "top3"
+      },
+      {
+        "source": "affinity_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "log_distance",
+        "target": "top3"
+      },
+      {
+        "source": "log_distance",
+        "target": "click_bool"
+      },
+      {
+        "source": "distance_missing",
+        "target": "top3"
+      },
+      {
+        "source": "distance_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_length_of_stay",
+        "target": "top3"
+      },
+      {
+        "source": "srch_length_of_stay",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_booking_window",
+        "target": "top3"
+      },
+      {
+        "source": "srch_booking_window",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_adults_count",
+        "target": "top3"
+      },
+      {
+        "source": "srch_adults_count",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_children_count",
+        "target": "top3"
+      },
+      {
+        "source": "srch_children_count",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_room_count",
+        "target": "top3"
+      },
+      {
+        "source": "srch_room_count",
+        "target": "click_bool"
+      },
+      {
+        "source": "srch_saturday_night_bool",
+        "target": "top3"
+      },
+      {
+        "source": "srch_saturday_night_bool",
+        "target": "click_bool"
+      },
+      {
+        "source": "n_results",
+        "target": "top3"
+      },
+      {
+        "source": "n_results",
+        "target": "click_bool"
+      },
+      {
+        "source": "visitor_same_country",
+        "target": "top3"
+      },
+      {
+        "source": "visitor_same_country",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_5",
+        "target": "top3"
+      },
+      {
+        "source": "site_5",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_14",
+        "target": "top3"
+      },
+      {
+        "source": "site_14",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_15",
+        "target": "top3"
+      },
+      {
+        "source": "site_15",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_24",
+        "target": "top3"
+      },
+      {
+        "source": "site_24",
+        "target": "click_bool"
+      },
+      {
+        "source": "site_32",
+        "target": "top3"
+      },
+      {
+        "source": "site_32",
+        "target": "click_bool"
+      },
+      {
+        "source": "search_month",
+        "target": "top3"
+      },
+      {
+        "source": "search_month",
+        "target": "click_bool"
+      },
+      {
+        "source": "search_dow",
+        "target": "top3"
+      },
+      {
+        "source": "search_dow",
+        "target": "click_bool"
+      },
+      {
+        "source": "search_hour",
+        "target": "top3"
+      },
+      {
+        "source": "search_hour",
+        "target": "click_bool"
+      },
+      {
+        "source": "visitor_hist_starrating",
+        "target": "top3"
+      },
+      {
+        "source": "visitor_hist_starrating",
+        "target": "click_bool"
+      },
+      {
+        "source": "visitor_hist_adr_usd",
+        "target": "top3"
+      },
+      {
+        "source": "visitor_hist_adr_usd",
+        "target": "click_bool"
+      },
+      {
+        "source": "visitor_hist_missing",
+        "target": "top3"
+      },
+      {
+        "source": "visitor_hist_missing",
+        "target": "click_bool"
+      },
+      {
+        "source": "comp_expedia_cheaper_n",
+        "target": "top3"
+      },
+      {
+        "source": "comp_expedia_cheaper_n",
+        "target": "click_bool"
+      },
+      {
+        "source": "comp_expedia_dearer_n",
+        "target": "top3"
+      },
+      {
+        "source": "comp_expedia_dearer_n",
+        "target": "click_bool"
+      }
+    ],
+    "adjustment_set": [
+      "promotion_flag",
+      "prop_starrating",
+      "star_zero",
+      "prop_review_score",
+      "review_zero",
+      "review_missing",
+      "prop_brand_bool",
+      "prop_location_score1",
+      "prop_location_score2",
+      "loc2_missing",
+      "prop_log_historical_price",
+      "hist_price_zero",
+      "log_price",
+      "price_rank_pct",
+      "price_rel_median",
+      "star_rel",
+      "review_rel",
+      "loc1_rel",
+      "loc2_rel",
+      "srch_query_affinity_score",
+      "affinity_missing",
+      "log_distance",
+      "distance_missing",
+      "srch_length_of_stay",
+      "srch_booking_window",
+      "srch_adults_count",
+      "srch_children_count",
+      "srch_room_count",
+      "srch_saturday_night_bool",
+      "n_results",
+      "visitor_same_country",
+      "site_5",
+      "site_14",
+      "site_15",
+      "site_24",
+      "site_32",
+      "search_month",
+      "search_dow",
+      "search_hour",
+      "visitor_hist_starrating",
+      "visitor_hist_adr_usd",
+      "visitor_hist_missing",
+      "comp_expedia_cheaper_n",
+      "comp_expedia_dearer_n"
+    ],
+    "excluded": [
+      {
+        "name": "position",
+        "reason": "Defines the treatment (top3 is computed from it), so it is merged into the treatment node."
+      },
+      {
+        "name": "booking_bool",
+        "reason": "Measured after the click, so it is post-outcome."
+      },
+      {
+        "name": "gross_bookings_usd",
+        "reason": "Recorded after the booking, so it is post-outcome."
+      }
+    ],
+    "unobserved_threats": [
+      "Expedia's internal hotel quality or relevance score used by the ranking algorithm",
+      "Hotel historical click and booking rates, and the commission or bid paid to Expedia",
+      "Personalised user features such as search history, device and user ID",
+      "Room availability and inventory that the ranker uses",
+      "Other undisclosed search context used for ranking"
+    ],
+    "interactions": [],
+    "trim": null
+  },
+  "review": {
+    "decision": "approve",
+    "adjustment_set": null,
+    "notes": ""
+  },
+  "approved_confounders": [
+    "affinity_missing",
+    "comp_expedia_cheaper_n",
+    "comp_expedia_dearer_n",
+    "distance_missing",
+    "hist_price_zero",
+    "loc1_rel",
+    "loc2_missing",
+    "loc2_rel",
+    "log_distance",
+    "log_price",
+    "n_results",
+    "price_rank_pct",
+    "price_rel_median",
+    "promotion_flag",
+    "prop_brand_bool",
+    "prop_location_score1",
+    "prop_location_score2",
+    "prop_log_historical_price",
+    "prop_review_score",
+    "prop_starrating",
+    "review_missing",
+    "review_rel",
+    "review_zero",
+    "search_dow",
+    "search_hour",
+    "search_month",
+    "site_14",
+    "site_15",
+    "site_24",
+    "site_32",
+    "site_5",
+    "srch_adults_count",
+    "srch_booking_window",
+    "srch_children_count",
+    "srch_length_of_stay",
+    "srch_query_affinity_score",
+    "srch_room_count",
+    "srch_saturday_night_bool",
+    "star_rel",
+    "star_zero",
+    "visitor_hist_adr_usd",
+    "visitor_hist_missing",
+    "visitor_hist_starrating",
+    "visitor_same_country"
+  ],
+  "identification": {
+    "valid": true,
+    "problems": [],
+    "d_separated": true,
+    "descendants_in_set": [],
+    "merged_into_treatment": [
+      "position"
+    ],
+    "n_nodes": 48,
+    "n_edges": 98
+  },
+  "design": {
+    "proceed": true,
+    "reason": null,
+    "n_treated": 421044,
+    "n_control": 797259
+  },
+  "estimates": {
+    "naive_untrimmed": {
+      "name": "naive_untrimmed",
+      "estimate": 0.09765395067985037,
+      "se": 0.0006173709248061776,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "mean_treated": 0.1583017451857763,
+        "mean_control": 0.06064779450592593
+      },
+      "ci_low": 0.09644392590212808,
+      "ci_high": 0.09886397545757267
+    },
+    "naive": {
+      "name": "naive",
+      "estimate": 0.09765395067985037,
+      "se": 0.0006173709248061776,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "mean_treated": 0.1583017451857763,
+        "mean_control": 0.06064779450592593
+      },
+      "ci_low": 0.09644392590212808,
+      "ci_high": 0.09886397545757267
+    },
+    "regression": {
+      "name": "regression",
+      "estimate": 0.08043825579870187,
+      "se": 0.000619929545545458,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {},
+      "ci_low": 0.07922321621648049,
+      "ci_high": 0.08165329538092325
+    },
+    "ipw": {
+      "name": "ipw",
+      "estimate": 0.06959643501180951,
+      "se": 0.0006447001859383229,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "max_weight": 29.587821078709265
+      },
+      "ci_low": 0.06833284586654412,
+      "ci_high": 0.0708600241570749
+    },
+    "aipw": {
+      "name": "aipw",
+      "estimate": 0.06609435482939437,
+      "se": 0.0006167174551222064,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "mean_control": 0.0669804839679289
+      },
+      "ci_low": 0.06488561082871765,
+      "ci_high": 0.06730309883007109
+    },
+    "dml": {
+      "name": "dml",
+      "estimate": 0.06528554338174127,
+      "se": 0.0006380281952547711,
+      "n_rows": 1218303,
+      "n_groups": 140424,
+      "extra": {
+        "econml_estimate": 0.06528554338174139
+      },
+      "ci_low": 0.06403503109792083,
+      "ci_high": 0.0665360556655617
+    }
+  },
+  "estimation_info": {
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "trimmed_share": 0.0,
+    "n_before_trim": 1218303,
+    "covariates": [
+      "promotion_flag",
+      "prop_starrating",
+      "star_zero",
+      "prop_review_score",
+      "review_zero",
+      "review_missing",
+      "prop_brand_bool",
+      "prop_location_score1",
+      "prop_location_score2",
+      "loc2_missing",
+      "prop_log_historical_price",
+      "hist_price_zero",
+      "log_price",
+      "price_rank_pct",
+      "price_rel_median",
+      "star_rel",
+      "review_rel",
+      "loc1_rel",
+      "loc2_rel",
+      "srch_query_affinity_score",
+      "affinity_missing",
+      "log_distance",
+      "distance_missing",
+      "srch_length_of_stay",
+      "srch_booking_window",
+      "srch_adults_count",
+      "srch_children_count",
+      "srch_room_count",
+      "srch_saturday_night_bool",
+      "n_results",
+      "visitor_same_country",
+      "site_5",
+      "site_14",
+      "site_15",
+      "site_24",
+      "site_32",
+      "search_month",
+      "search_dow",
+      "search_hour",
+      "visitor_hist_starrating",
+      "visitor_hist_adr_usd",
+      "visitor_hist_missing",
+      "comp_expedia_cheaper_n",
+      "comp_expedia_dearer_n"
+    ],
+    "propensity_model": "results/models/run-ff2df23c_a0_propensity.pkl",
+    "synthetic": false
+  },
+  "benchmark": {
+    "estimate": 0.05248324941550409,
+    "se": 0.0008446253741550892,
+    "ci_low": 0.05090096353689791,
+    "ci_high": 0.054154384493776214,
+    "reps": 1000,
+    "n_searches": 61386,
+    "trim": [
+      0.01,
+      0.99
+    ],
+    "trimmed_share": 0.0,
+    "window": "q1"
+  },
+  "gap": {
+    "primary": {
+      "gap": 0.013611105413890275,
+      "se": 0.0010458166388612467,
+      "ci_low": 0.011561304801722232,
+      "ci_high": 0.015660906026058317,
+      "tolerance": 0.010496649883100818,
+      "verdict": "mismatch"
+    },
+    "by_estimator": {
+      "naive_untrimmed": {
+        "gap": 0.04517070126434628,
+        "se": 0.0010462021226620884,
+        "ci_low": 0.04312014510392859,
+        "ci_high": 0.04722125742476398,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "naive": {
+        "gap": 0.04517070126434628,
+        "se": 0.0010462021226620884,
+        "ci_low": 0.04312014510392859,
+        "ci_high": 0.04722125742476398,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "regression": {
+        "gap": 0.027955006383197777,
+        "se": 0.0010477140182830534,
+        "ci_low": 0.02590148690736299,
+        "ci_high": 0.03000852585903256,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "ipw": {
+        "gap": 0.017113185596305418,
+        "se": 0.0010625583995317776,
+        "ci_low": 0.015030571133223133,
+        "ci_high": 0.019195800059387702,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "aipw": {
+        "gap": 0.013611105413890275,
+        "se": 0.0010458166388612467,
+        "ci_low": 0.011561304801722232,
+        "ci_high": 0.015660906026058317,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      },
+      "dml": {
+        "gap": 0.012802293966237173,
+        "se": 0.0010585235002618905,
+        "ci_low": 0.010727587905723868,
+        "ci_high": 0.014877000026750478,
+        "tolerance": 0.010496649883100818,
+        "verdict": "mismatch"
+      }
+    }
+  },
+  "population_checks": {
+    "post_hoc": true,
+    "note": "Added 20 Nov 2026 after the synthetic check; not part of the pre-registered comparison.",
+    "plain_benchmark": {
+      "estimate": 0.05248324941550409,
+      "se": 0.0008446253741550892,
+      "ci_low": 0.05090096353689791,
+      "ci_high": 0.054154384493776214,
+      "reps": 1000,
+      "n_searches": 61386
+    },
+    "hotel_reweighted_benchmark": {
+      "estimate": 0.058929642720057046,
+      "se": 0.0011786962250329802,
+      "ci_low": 0.05676358131523636,
+      "ci_high": 0.061199352536260986,
+      "reps": 1000,
+      "n_searches": 61386,
+      "max_weight": 20.1867387013106,
+      "effective_sample_share": 0.5784490873238061
+    },
+    "gap_vs_hotel_reweighted": {
+      "gap": 0.007164712109337321,
+      "se": 0.0013302876419629735,
+      "ci_low": 0.004557348331089893,
+      "ci_high": 0.009772075887584749,
+      "tolerance": 0.01178592854401141,
+      "verdict": "match"
+    },
+    "transported_estimate": {
+      "estimate": 0.06486433512375263,
+      "se": 0.0001042802592633968,
+      "ci_low": 0.06466770071427728,
+      "ci_high": 0.06507352769596986
+    },
+    "gap_transported_vs_plain": {
+      "gap": 0.012381085708248536,
+      "ci_low": 0.010725586260806753,
+      "ci_high": 0.013929647302949802,
+      "tolerance": 0.010496649883100818,
+      "verdict": "mismatch"
+    }
+  },
+  "refutations": {
+    "overlap": {
+      "check": "overlap",
+      "trimmed_share": 0.0,
+      "trim": [
+        0.01,
+        0.99
+      ],
+      "propensity_quantiles": {
+        "0.01": 0.11457810695221113,
+        "0.05": 0.1422455232464433,
+        "0.5": 0.31485292242845153,
+        "0.95": 0.671543354558319,
+        "0.99": 0.8342368327120256
+      },
+      "rule": "share of rows outside [0.01, 0.99] <= 0.3",
+      "passed": true
+    },
+    "balance": {
+      "check": "balance",
+      "max_abs_smd_after": 0.023757702398920486,
+      "worst_covariate": "srch_query_affinity_score",
+      "failing": [],
+      "skipped_too_few_observed": [],
+      "rule": "all |SMD| after weighting < 0.1",
+      "passed": true
+    },
+    "placebo": {
+      "check": "placebo",
+      "estimate": -1.432480275398813e-05,
+      "ci": [
+        -0.0010752179930143537,
+        0.0010465683875063776
+      ],
+      "single_run_se": 0.0005412819820305658,
+      "rule": "average of 5 permutation estimates within +/-1.96 single-run standard errors of zero",
+      "passed": true
+    },
+    "random_common_cause": {
+      "check": "random_common_cause",
+      "estimate": 0.06608228560856211,
+      "shift_in_se": 0.019570097671172782,
+      "rule": "estimate moves by < 0.5 standard errors",
+      "passed": true
+    },
+    "subset_stability": {
+      "check": "subset_stability",
+      "share_inside": 0.95,
+      "rule": "at least 80% of 20 half-sample estimates inside the full-sample 95% interval",
+      "passed": true
+    },
+    "sensitivity": {
+      "check": "sensitivity",
+      "ols_estimate": 0.08043825579869959,
+      "ols_se_classical": 0.0005645278643411944,
+      "partial_r2_treatment_outcome": 0.016392212183462478,
+      "robustness_value_q1": 0.12103046856905256,
+      "strongest_benchmark_covariate": "n_results",
+      "bound_at_strongest": {
+        "r2dz_x": 0.006953321758314523,
+        "r2yz_dx": 0.004573844860100946,
+        "bias": 0.003526199563022757,
+        "adjusted_estimate": 0.07691205623567683
+      },
+      "ols_se_cluster": 0.0006199295455455154,
+      "adjusted_ci_cluster": [
+        0.0756955613238831,
+        0.07812855114747057
+      ],
+      "e_value": 3.3869439129927725,
+      "e_value_ci": 3.349720346673087,
+      "rule": "effect keeps its sign with a hidden confounder kd=1.0, ky=1.0 times the strongest covariate",
+      "passed": true
+    },
+    "held_out_covariate": {
+      "check": "held_out_covariate",
+      "covariate": "prop_location_score2",
+      "also_left_out": [
+        "loc2_missing",
+        "loc2_rel"
+      ],
+      "estimate": 0.043471105283524214,
+      "estimate_in_sd": 0.25465743934307705,
+      "ci": [
+        0.04283658093511176,
+        0.04410562963193667
+      ],
+      "rule": "reported, not pass or fail",
+      "passed": null
+    }
+  },
+  "verdict": {
+    "route": "pass",
+    "failures": [],
+    "rationale": "The run passed because every gated check cleared its rule: overlap, balance, placebo, random common cause, subset stability, and sensitivity. Overlap confirmed that extreme propensity rows stayed within the allowed share, balance confirmed that every absolute standardized mean difference fell below the cutoff after weighting, and placebo confirmed that the permutation estimates averaged close enough to zero. The random common cause, subset stability, and sensitivity checks also met their rules, while the held-out covariate result was reported only and did not factor into the decision."
+  },
+  "heterogeneity": null,
+  "attempts": 0,
+  "history": [
+    {
+      "attempt": 0,
+      "adjustment_set_size": 44,
+      "trim": [
+        0.01,
+        0.99
+      ],
+      "interactions": [],
+      "failures": [],
+      "route": "pass",
+      "primary_estimate": 0.06609435482939437
+    }
+  ],
+  "notes": [],
+  "report_path": "results/runs/run-ff2df23c/report.md",
+  "outcome_status": "reported",
+  "code_version": "5b82799dae8b"
+}
